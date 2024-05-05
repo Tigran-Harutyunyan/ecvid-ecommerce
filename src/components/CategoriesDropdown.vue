@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 import { useMain } from "@/stores/main";
+import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
+
 const { categories } = storeToRefs(useMain());
+const router = useRouter();
 </script>
 <template>
   <Menu as="div" class="relative inline-block text-left">
@@ -43,7 +46,7 @@ const { categories } = storeToRefs(useMain());
             v-slot="{ active }"
             v-for="{ name, imageUrl, link, productCount } in categories"
           >
-            <RouterLink :to="link">
+            <a @click="router.push(link)">
               <button
                 :class="[
                   active ? 'bg-primary-600 text-white' : 'text-gray-900',
@@ -63,7 +66,7 @@ const { categories } = storeToRefs(useMain());
                   </SfCounter>
                 </span>
               </button>
-            </RouterLink>
+            </a>
           </MenuItem>
         </div>
       </MenuItems>
