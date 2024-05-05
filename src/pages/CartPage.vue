@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import { SfButton, SfIconShoppingCart } from "@storefront-ui/vue";
 
+import Breadcrumbs from "@/components/Breadcrumbs.vue";
 import CartProduct from "@/components/CartProduct.vue";
 import CartSummary from "@/components/CartSummary.vue";
 import CheckIcon from "@/components/ui/icons/CheckIcon.vue";
@@ -14,9 +15,18 @@ const showPaySuccessMessage = ref(false);
 const onPurchaseSuccess = () => {
   showPaySuccessMessage.value = true;
 };
+
+const breadcrumps = [
+  {
+    label: "Shopping cart",
+    link: "",
+  },
+];
 </script>
 
 <template>
+  <Breadcrumbs :breadcrumps="breadcrumps" class="mt-5 mb-5" />
+
   <div v-if="showPaySuccessMessage" class="text-center p-10">
     <div class="flex items-center justify-center">
       <div>

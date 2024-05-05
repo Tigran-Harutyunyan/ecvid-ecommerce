@@ -1,17 +1,25 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { notify } from "@kyvg/vue3-notification";
 import { useRoute, useRouter } from "vue-router";
 import ProductCard from "@/components/ProductCard.vue";
 import Card from "@/components/Card.vue";
 import CategoryPageSkeleton from "@/components/skeleton/CategoryPageSkeleton.vue";
 import { useAPI } from "@/composables/useAPI";
+import Breadcrumbs from "@/components/Breadcrumbs.vue";
 
 const route = useRoute();
 const router = useRouter();
 const category = ref();
 const products = ref();
 const isLoading = ref(true);
+
+const breadcrumps = [
+  {
+    label: "Category details",
+    link: "",
+  },
+];
 
 const getCategory = async () => {
   const data = await useAPI(`/categories/${route.params.id as string}`);
@@ -40,11 +48,20 @@ const getCategoryProducts = async () => {
   }
 };
 
-getCategory();
-getCategoryProducts();
+watch(
+  () => route.params,
+  () => {
+    getCategory();
+    getCategoryProducts();
+  },
+  {
+    immediate: true,
+  }
+);
 </script>
 
 <template>
+  <Breadcrumbs :breadcrumps="breadcrumps" class="mt-5" />
   <div class="mt-6 mb-16">
     <CategoryPageSkeleton v-if="isLoading" />
 

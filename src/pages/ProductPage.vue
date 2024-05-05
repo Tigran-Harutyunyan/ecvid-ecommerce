@@ -9,11 +9,19 @@ import ProductInfo from "@/components/ProductInfo.vue";
 import { type Product } from "@/types";
 import Card from "@/components/Card.vue";
 import ProductSkeleton from "@/components/skeleton/ProductSkeleton.vue";
+import Breadcrumbs from "@/components/Breadcrumbs.vue";
 
 const route = useRoute();
 const isLoading = ref(true);
 const product = ref<Product>();
 const router = useRouter();
+
+const breadcrumps = [
+  {
+    label: "Product details",
+    link: "",
+  },
+];
 
 const getProduct = async (productId: string) => {
   isLoading.value = true;
@@ -54,11 +62,13 @@ watch(
 </script>
 
 <template>
+  <Breadcrumbs :breadcrumps="breadcrumps" class="mt-5 mb-5" />
+
   <ProductSkeleton v-if="isLoading" />
 
   <Card
     v-if="!isLoading && product"
-    class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 mt-10 mb-10"
+    class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 mb-10"
   >
     <ProductImages
       v-if="product?.galleryImages"
