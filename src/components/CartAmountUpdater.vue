@@ -16,13 +16,15 @@ const debouncedFn = useDebounceFn((val) => {
   updateCartItem(productId, Number(val));
 }, 400);
 
-const onKeyPress = (evt) => {
-  evt = evt ? evt : window.event;
-  var charCode = evt.which ? evt.which : evt.keyCode;
+const handelKeyUp = (evt: KeyboardEvent) => {
+  const target = <HTMLInputElement>evt.target;
+
+  let charCode = evt.which ? evt.which : evt.keyCode;
+
   if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
     evt.preventDefault();
   } else {
-    debouncedFn(evt.target.value);
+    debouncedFn(target.value);
 
     return true;
   }
@@ -34,8 +36,6 @@ const onKeyPress = (evt) => {
     size="sm"
     aria-label="Label size sm"
     :model-value="amount"
-    @keyup="onKeyPress"
+    @keyup="handelKeyUp"
   />
 </template>
-
-<style lang="scss" scoped></style>

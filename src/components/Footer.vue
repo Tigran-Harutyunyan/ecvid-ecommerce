@@ -1,10 +1,7 @@
 <script lang="ts" setup>
 import {
-  SfIconContactSupport,
   SfIconFacebook,
-  SfIconHelp,
   SfIconInstagram,
-  SfIconCall,
   SfIconPinterest,
   SfIconTwitter,
   SfIconYoutube,

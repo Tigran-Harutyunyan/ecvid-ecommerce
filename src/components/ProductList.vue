@@ -6,21 +6,16 @@ import ProductCard from "@/components/ProductCard.vue";
 import { useAPI } from "@/composables/useAPI";
 import Pagination from "@/components/Pagination.vue";
 import Card from "@/components/Card.vue";
-
-interface Iproduct {
-  id: number;
-  name: string;
-  imageUrl: string;
-  defaultDisplayedPriceFormatted: string;
-  description: string;
-}
+import { type Product } from "@/types";
 
 interface IpaginationPayload {
-  limit: number;
-  offset: number;
+  query: {
+    limit: number;
+    offset: number;
+  };
 }
 
-const products = ref<Iproduct[]>([]);
+const products = ref<Product[]>([]);
 const pagination = ref();
 const isLoading = ref(true);
 const ITEMS_PER_PAGE = 5;
@@ -29,10 +24,7 @@ const router = useRouter();
 const route = useRoute();
 
 const onPaginationChange = (query: IpaginationPayload) => {
-  router.push({
-    path: "/",
-    query,
-  });
+  router.push(`/?${queryString.stringify(query)}`);
 };
 
 const getProducts = async (queryParams?: string) => {
@@ -46,7 +38,7 @@ const getProducts = async (queryParams?: string) => {
 
     if (data?.items && Array.isArray(data?.items)) {
       const { items, limit, offset, total, count } = data;
-      products.value = items as Iproduct[];
+      products.value = items as Product[];
       pagination.value = {
         limit,
         offset,

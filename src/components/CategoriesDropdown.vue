@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 import { useMain } from "@/stores/main";
 import { storeToRefs } from "pinia";
