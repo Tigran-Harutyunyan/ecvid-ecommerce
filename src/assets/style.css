@@ -1,0 +1,39 @@
+/* src/style.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body, html {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+}
+
+.cart-badge {
+  color: black;
+}
+
+body > div {
+  @apply h-screen flex flex-col
+}
+
+.product-card {
+  @apply translate-y-0 shadow-[0_4px_24px_0_rgba(34,41,47,0.1)] transition-all duration-[0.3s] ease-[ease-in-out] rounded-[0.428rem] hover:translate-y-[-5px] hover:shadow-[0_4px_25px_0_rgba(34,41,47,0.25)];
+}
+
+.card {
+  @apply   shadow-[0_4px_24px_0_rgba(34,41,47,0.1)] overflow-hidden rounded-[0.428rem]  ;
+}
+
+.products-grid {
+  @apply grid grid-cols-[1fr_1fr_1fr] gap-8;
+}
+ 
+.breadcrump-link {
+  @apply flex items-center text-sm text-secondary  hover:text-primary-700 focus:outline-none focus:text-primary-900     
+}
+
+ 
+
+.search-form+ span {
+  box-shadow: none !important;
+}
