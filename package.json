@@ -18,7 +18,8 @@
     "pinia-plugin-persistedstate": "^3.2.1",
     "query-string": "^9.0.0",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.2"
+    "vue-router": "^4.3.2",
+    "vue3-lazyload": "^0.3.8"
   },
   "devDependencies": {
     "@storefront-ui/typography": "^2.6.0",

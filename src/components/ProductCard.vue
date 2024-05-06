@@ -23,7 +23,7 @@ const { hasRequiredOption } = useProduct(product);
 
       <RouterLink :to="`/product/${product.id}`" class="block">
         <img
-          :src="product?.imageUrl"
+          v-lazy="product?.imageUrl"
           :alt="product?.name"
           class="block object-cover h-auto rounded-md aspect-square"
         />
