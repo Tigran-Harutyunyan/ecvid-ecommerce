@@ -12,4 +12,6 @@ export const useMain = defineStore("main", () => {
         setCategories,
         categories,
     };
+}, {
+    persist: true
 });

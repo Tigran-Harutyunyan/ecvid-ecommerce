@@ -62,7 +62,7 @@ watch(
 </script>
 
 <template>
-  <Breadcrumbs :breadcrumps="breadcrumps" class="mt-5 mb-5" />
+  <Breadcrumbs :breadcrumps="breadcrumps" class="mb-5" />
 
   <ProductSkeleton v-if="isLoading" />
 

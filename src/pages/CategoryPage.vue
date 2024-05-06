@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 import { notify } from "@kyvg/vue3-notification";
 import { useRoute, useRouter } from "vue-router";
-import ProductCard from "@/components/ProductCard.vue";
+import Search from "@/components/Search.vue";
+import ProductList from "@/components/ProductList.vue";
 import Card from "@/components/Card.vue";
 import CategoryPageSkeleton from "@/components/skeleton/CategoryPageSkeleton.vue";
 import { useAPI } from "@/composables/useAPI";
 import Breadcrumbs from "@/components/Breadcrumbs.vue";
 
 const route = useRoute();
-const router = useRouter();
 const category = ref();
-const products = ref();
 const isLoading = ref(true);
 
 const breadcrumps = [
@@ -21,30 +20,22 @@ const breadcrumps = [
   },
 ];
 
+const filters = computed(() => {
+  return {
+    categories: route.params.id as string,
+  };
+});
+
 const getCategory = async () => {
-  const data = await useAPI(`/categories/${route.params.id as string}`);
-  if (data) {
-    category.value = data;
-  }
-};
-
-const getCategoryProducts = async () => {
-  const data = await useAPI(
-    `/products?categories=${route.params.id as string}`
-  );
-
-  if (data.items && Array.isArray(data.items)) {
-    products.value = data.items;
-  }
-
-  isLoading.value = false;
-
-  if (data.code) {
-    notify({
-      type: "error",
-      text: "Category not found",
-    });
-    router.push("/");
+  isLoading.value = true;
+  try {
+    const data = await useAPI(`/categories/${route.params.id as string}`);
+    if (data) {
+      category.value = data;
+    }
+  } catch (error) {
+  } finally {
+    isLoading.value = false;
   }
 };
 
@@ -52,7 +43,6 @@ watch(
   () => route.params,
   () => {
     getCategory();
-    getCategoryProducts();
   },
   {
     immediate: true,
@@ -61,24 +51,28 @@ watch(
 </script>
 
 <template>
-  <Breadcrumbs :breadcrumps="breadcrumps" class="mt-5" />
-  <div class="mt-6 mb-16">
-    <CategoryPageSkeleton v-if="isLoading" />
+  <Breadcrumbs :breadcrumps="breadcrumps" />
 
-    <Card v-else class="p-6">
-      <div class="flex flex-wrap gap-4">
-        <img :src="category.imageUrl" :alt="category.name" />
+  <CategoryPageSkeleton v-if="isLoading" />
 
-        <div class="flex flex-col mt-5">
-          <p class="text-title text-3xl">{{ category.name }}</p>
-        </div>
-      </div>
-      <div
-        v-if="products.length"
-        class="grid gap-8 grid-cols-1 min-[480px]:grid-cols-2 2xs:grid-cols-2 md:gap-6 md:grid-cols-2 min-[1100px]:grid-cols-4 mb-10 md:mb-5 mt-5"
-      >
-        <ProductCard v-for="product in products" :product="product" />
+  <div class="md:flex md:justify-start gap-6 mt-6" v-else>
+    <Card class="md:max-w-[300px] w-full mb-auto">
+      <div class="pb-6">
+        <img
+          :src="category.imageUrl"
+          :alt="category.name"
+          class="mx-auto max-w-[200px] md:max-auto"
+        />
+
+        <p class="text-title text-xl w-full px-4 text-center">
+          {{ category.name }}
+        </p>
       </div>
     </Card>
+
+    <div class="flex-1 mt-4 md:mt-0">
+      <Search class="mb-6" />
+      <ProductList :filters="filters" />
+    </div>
   </div>
 </template>

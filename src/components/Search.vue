@@ -13,7 +13,7 @@ const search = () => {
   parsedQueryParams.keyword = inputValue.value;
 
   router.push({
-    path: "/",
+    path: location.pathname,
     query: parsedQueryParams,
   });
 };
@@ -41,7 +41,7 @@ onMounted(() => {
       @input="debouncedFn"
       type="search"
       class="[&::-webkit-search-cancel-button]:appearance-none"
-      placeholder="Search"
+      placeholder="Search by keyword"
       wrapper-class="flex-1 h-10 pr-0"
       size="base"
     >

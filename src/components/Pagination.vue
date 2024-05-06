@@ -18,7 +18,7 @@ interface PaginationProps {
 const { totalItems, offset, pageSize, maxPages } =
   defineProps<PaginationProps>();
 
-const currentPage = offset >= totalItems ? -1 : offset / 2 + 1;
+const currentPage = offset >= totalItems ? -1 : offset / pageSize + 1;
 
 const emit = defineEmits(["change"]);
 

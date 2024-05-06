@@ -8,6 +8,14 @@ import Pagination from "@/components/Pagination.vue";
 import Card from "@/components/Card.vue";
 import { type Product } from "@/types";
 
+interface Props {
+  filters?: {
+    [key: string]: string;
+  };
+}
+
+const { filters } = defineProps<Props>();
+
 interface IpaginationPayload {
   query: {
     limit: number;
@@ -18,19 +26,20 @@ interface IpaginationPayload {
 const products = ref<Product[]>([]);
 const pagination = ref();
 const isLoading = ref(true);
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 6;
 
 const router = useRouter();
 const route = useRoute();
 
 const onPaginationChange = (query: IpaginationPayload) => {
-  router.push(`/?${queryString.stringify(query)}`);
+  router.push(`${location.pathname}?${queryString.stringify(query)}`);
 };
 
 const getProducts = async (queryParams?: string) => {
   isLoading.value = true;
 
   let url = "/products";
+
   if (queryParams) url += `?${queryParams}`;
 
   try {
@@ -53,24 +62,28 @@ const getProducts = async (queryParams?: string) => {
 };
 
 const getQueryParams = () => {
-  let parsedQueryParams = queryString.parse(location.search);
+  let params = queryString.parse(location.search);
 
-  if (parsedQueryParams !== null) {
-    parsedQueryParams.limit = Object.hasOwn(parsedQueryParams, "limit")
-      ? parsedQueryParams.limit
+  if (params !== null) {
+    params.limit = Object.hasOwn(params, "limit")
+      ? params.limit
       : String(ITEMS_PER_PAGE);
 
-    parsedQueryParams.offset = Object.hasOwn(parsedQueryParams, "offset")
-      ? parsedQueryParams.offset
-      : String(0);
+    params.offset = Object.hasOwn(params, "offset") ? params.offset : String(0);
   }
 
-  return queryString.stringify(parsedQueryParams);
+  if (filters) {
+    for (const [key, val] of Object.entries(filters)) {
+      params[key] = val;
+    }
+  }
+
+  return queryString.stringify(params);
 };
 
 watch(
   () => route.params,
-  () => {
+  async () => {
     getProducts(getQueryParams());
   },
   {

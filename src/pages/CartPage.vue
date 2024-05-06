@@ -25,7 +25,7 @@ const breadcrumps = [
 </script>
 
 <template>
-  <Breadcrumbs :breadcrumps="breadcrumps" class="mt-5 mb-5" />
+  <Breadcrumbs :breadcrumps="breadcrumps" class="mb-5" />
 
   <div v-if="showPaySuccessMessage" class="text-center p-10">
     <div class="flex items-center justify-center">

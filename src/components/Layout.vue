@@ -32,7 +32,7 @@ getCategories();
 
 <template>
   <Header />
-  <main class="flex-grow max-w-screen-2xl w-full mx-auto px-6 lg:px-8 3xl:px-0">
+  <main class="flex-grow max-w-screen-2xl w-full mx-auto p-6 lg:p-8 3xl:px-0">
     <slot />
   </main>
   <Footer />
