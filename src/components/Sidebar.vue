@@ -11,7 +11,7 @@ import CategoriesList from "@/components/CategoriesList.vue";
       >
         Categories
       </h2>
-      <CategoriesList />
+      <CategoriesList class="p-2" />
     </div>
   </Card>
 </template>
