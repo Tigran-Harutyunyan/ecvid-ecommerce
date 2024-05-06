@@ -2,6 +2,7 @@
 import { ref, toRaw, computed } from "vue";
 import { storeToRefs } from "pinia";
 import { SfIconShoppingCartCheckout, SfIconPackage } from "@storefront-ui/vue";
+import WishlistButton from "@/components/WishlistButton.vue";
 
 import ProductOptions from "@/components/ProductOptions.vue";
 import QuantitySelector from "@/components/QuantitySelector.vue";
@@ -71,6 +72,8 @@ const currentProductCountInCart = computed(() => {
           size="lg"
           class="xs:ml-4"
         />
+
+        <WishlistButton :id="product.id" class="ml-auto mt-1" />
       </div>
     </div>
 

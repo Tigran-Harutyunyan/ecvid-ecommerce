@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Product } from "../types";
+import { type Product } from "@/types";
 import { SfButton, SfIconShoppingCart } from "@storefront-ui/vue";
 import { useCart } from "@/stores/cart";
 const { addToCart } = useCart();

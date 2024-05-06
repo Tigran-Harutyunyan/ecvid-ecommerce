@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import AddToCartButton from "@/components/AddToCartButton.vue";
+import WishlistButton from "@/components/WishlistButton.vue";
 import { type Product } from "@/types";
 import { useProduct } from "@/composables/useProduct";
 
@@ -15,6 +16,11 @@ const { hasRequiredOption } = useProduct(product);
 <template>
   <div class="product-card">
     <div class="relative">
+      <WishlistButton
+        :id="product.id"
+        class="absolute bottom-0 right-0 mr-2 mb-2"
+      />
+
       <RouterLink :to="`/product/${product.id}`" class="block">
         <img
           :src="product?.imageUrl"
