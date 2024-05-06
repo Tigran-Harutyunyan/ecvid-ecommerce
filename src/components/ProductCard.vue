@@ -33,7 +33,7 @@ const { hasRequiredOption } = useProduct(product);
       <RouterLink
         :to="`/product/${product.id}`"
         variant="secondary"
-        class="line-clamp-1"
+        class="line-clamp-1 text-sm"
       >
         {{ product?.name }}
       </RouterLink>
