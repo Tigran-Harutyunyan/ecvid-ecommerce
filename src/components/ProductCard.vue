@@ -33,17 +33,15 @@ const { hasRequiredOption } = useProduct(product);
       <RouterLink
         :to="`/product/${product.id}`"
         variant="secondary"
-        class="no-underline line-clamp-1"
+        class="line-clamp-1"
       >
         {{ product?.name }}
       </RouterLink>
 
-      <p
-        class="block py-2 font-normal leading-5 typography-text-sm text-neutral-700"
-      ></p>
-      <span class="block pb-2 typography-text-lg text-primary-700">{{
-        product.defaultDisplayedPriceFormatted
-      }}</span>
+      <span
+        class="block pb-2 mt-2 typography-text-lg text-primary-700 font-semibold"
+        >{{ product.defaultDisplayedPriceFormatted }}</span
+      >
 
       <AddToCartButton
         v-if="!hasRequiredOption"
