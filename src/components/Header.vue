@@ -6,7 +6,7 @@ import CategoriesDropdown from "@/components/CategoriesDropdown.vue";
 
 <template>
   <header
-    class="fixed z-10 flex justify-center w-full py-2 px-4 lg:py-5 lg:px-6 bg-primary-700"
+    class="fixed z-20 flex justify-center w-full py-2 px-4 lg:py-5 lg:px-6 bg-primary-700"
   >
     <div
       class="flex flex-wrap lg:flex-nowrap items-center flex-row justify-start h-full max-w-[1536px] w-full"

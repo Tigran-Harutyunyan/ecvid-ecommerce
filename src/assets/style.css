@@ -30,10 +30,5 @@ body > div {
  
 .breadcrump-link {
   @apply flex items-center text-sm text-secondary  hover:text-primary-700 focus:outline-none focus:text-primary-900     
-}
-
+} 
  
-
-.search-form+ span {
-  box-shadow: none !important;
-}

@@ -131,7 +131,7 @@ const assignRef = (
           v-if="!lastThumbVisible"
           v-bind="defaultProps"
           :disabled="activeIndex === images.length"
-          class="absolute !rounded-full z-10 rotate-90 bg-white"
+          class="absolute bottom-0 !rounded-full z-10 rotate-90 bg-white"
           variant="secondary"
           size="sm"
           square

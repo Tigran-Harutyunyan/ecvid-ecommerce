@@ -1,4 +1,4 @@
-# The E-commerce application based on Ecwid API with Vue 3, Pinia, Typescript
+# The E-commerce application based on Ecwid API with Vue 3, Pinia, Typescript, Tailwind
 
 [Live Demo](https://ecwid-ecommerce.vercel.app/)
 
