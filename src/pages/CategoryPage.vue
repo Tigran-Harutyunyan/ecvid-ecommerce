@@ -57,7 +57,7 @@ watch(
   <CategoryPageSkeleton v-if="isLoading" />
 
   <div class="md:flex md:justify-start gap-6 mt-6" v-else>
-    <Card class="md:max-w-[300px] w-full mb-auto">
+    <Card class="md:max-w-[300px] w-full mb-auto p-3">
       <div class="pb-6">
         <img
           :src="category.imageUrl"
@@ -71,7 +71,7 @@ watch(
       </div>
     </Card>
 
-    <div class="flex-1 mt-4 md:mt-0">
+    <div class="flex-1 mt-8 md:mt-0">
       <Search class="mb-6" />
       <ProductList :filters="filters" />
     </div>

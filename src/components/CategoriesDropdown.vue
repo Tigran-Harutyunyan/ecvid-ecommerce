@@ -4,6 +4,7 @@ import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 import { useMain } from "@/stores/main";
 import { useRouter, useRoute } from "vue-router";
 import { storeToRefs } from "pinia";
+import { SfCounter } from "@storefront-ui/vue";
 
 const { categories } = storeToRefs(useMain());
 
@@ -72,7 +73,12 @@ console.log(route.params);
                   />
                   {{ name }}
 
-                  <SfCounter class="ml-2 typography-text-sm font-normal">
+                  <SfCounter
+                    class="ml-2 typography-text-sm font-normal"
+                    :class="{
+                      'text-white': active || currentCategoryID === id,
+                    }"
+                  >
                     {{ productCount }}
                   </SfCounter>
                 </span>
