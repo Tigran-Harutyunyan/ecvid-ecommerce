@@ -90,6 +90,7 @@ const assignRef = (
 <template>
   <div class="relative flex w-full max-h-[600px] aspect-[4/3]">
     <SfScrollable
+      v-if="images.length > 1"
       ref="thumbsRef"
       class="items-center w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
       direction="vertical"
