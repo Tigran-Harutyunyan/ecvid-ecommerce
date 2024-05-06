@@ -73,7 +73,7 @@ const currentProductCountInCart = computed(() => {
           class="xs:ml-4"
         />
 
-        <WishlistButton :id="product.id" class="ml-auto mt-1" />
+        <WishlistButton :id="product.id" class="ml-auto mt-2" />
       </div>
     </div>
 

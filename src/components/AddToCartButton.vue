@@ -23,6 +23,6 @@ const { count, product, disabled, size = "sm" } = defineProps<Props>();
     <template #prefix>
       <SfIconShoppingCart size="sm" />
     </template>
-    Add to cart
+    <span class="hidden sm:inline-block">Add to cart</span>
   </SfButton>
 </template>
