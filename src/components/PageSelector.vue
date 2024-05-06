@@ -23,16 +23,16 @@ type SelectOption = {
 // These values are better off to come as props
 const options: SelectOption[] = [
   {
-    label: "2",
-    value: 2,
+    label: "3",
+    value: 3,
   },
   {
-    label: "5",
-    value: 5,
+    label: "6",
+    value: 6,
   },
   {
-    label: "10",
-    value: 10,
+    label: "12",
+    value: 12,
   },
   {
     label: "20",

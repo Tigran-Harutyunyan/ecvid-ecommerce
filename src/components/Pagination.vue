@@ -10,13 +10,15 @@ import {
 
 interface PaginationProps {
   totalItems: number;
-  currentPage: number;
+  offset: number;
   pageSize: number;
   maxPages: number;
 }
 
-const { totalItems, currentPage, pageSize, maxPages } =
+const { totalItems, offset, pageSize, maxPages } =
   defineProps<PaginationProps>();
+
+const currentPage = offset >= totalItems ? -1 : offset / 2 + 1;
 
 const emit = defineEmits(["change"]);
 
@@ -38,7 +40,7 @@ const onShowPage = (pageSize: string) => {
 const setPage = (pageNumber: number) => {
   emit("change", {
     limit: pageSize,
-    offset: pageNumber - 1,
+    offset: pageSize * (pageNumber - 1),
   });
 };
 </script>

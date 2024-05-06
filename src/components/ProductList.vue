@@ -56,12 +56,13 @@ const getQueryParams = () => {
   let parsedQueryParams = queryString.parse(location.search);
 
   if (parsedQueryParams !== null) {
-    parsedQueryParams.limit =
-      "limit" in parsedQueryParams
-        ? parsedQueryParams.limit
-        : String(ITEMS_PER_PAGE);
-    parsedQueryParams.offset =
-      "offset" in parsedQueryParams ? parsedQueryParams.offset : String(0);
+    parsedQueryParams.limit = Object.hasOwn(parsedQueryParams, "limit")
+      ? parsedQueryParams.limit
+      : String(ITEMS_PER_PAGE);
+
+    parsedQueryParams.offset = Object.hasOwn(parsedQueryParams, "offset")
+      ? parsedQueryParams.offset
+      : String(0);
   }
 
   return queryString.stringify(parsedQueryParams);
@@ -103,7 +104,7 @@ watch(
     <Pagination
       v-if="pagination.count !== 0"
       :totalItems="pagination.total"
-      :currentPage="pagination.offset + 1"
+      :offset="pagination.offset"
       :pageSize="pagination.limit"
       :maxPages="pagination.count"
       @change="onPaginationChange"
