@@ -68,7 +68,7 @@ watch(
 
   <Card
     v-if="!isLoading && product"
-    class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 mb-10"
+    class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 mb-10 max-w-[1100px]"
   >
     <ProductImages
       v-if="product?.galleryImages"

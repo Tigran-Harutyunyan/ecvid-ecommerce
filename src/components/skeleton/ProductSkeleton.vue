@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import Card from "../../components/Card.vue";
+import Card from "@/components/Card.vue";
 </script>
 <template>
-  <Card>
+  <Card class="max-w-[1100px]">
     <div
       class="animate-pulse grid grid-cols-1 md:grid-cols-2 gap-6 p-6 mt-10 mb-10 space-y-2"
     >
