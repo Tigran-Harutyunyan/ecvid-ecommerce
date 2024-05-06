@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, watch, computed } from "vue";
-import { notify } from "@kyvg/vue3-notification";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import Search from "@/components/Search.vue";
 import ProductList from "@/components/ProductList.vue";
 import Card from "@/components/Card.vue";
@@ -22,14 +21,16 @@ const breadcrumps = [
 
 const filters = computed(() => {
   return {
-    categories: route.params.id as string,
+    categories: route.params.categoryID as string,
   };
 });
 
 const getCategory = async () => {
   isLoading.value = true;
   try {
-    const data = await useAPI(`/categories/${route.params.id as string}`);
+    const data = await useAPI(
+      `/categories/${route.params.categoryID as string}`
+    );
     if (data) {
       category.value = data;
     }
