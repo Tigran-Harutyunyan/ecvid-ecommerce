@@ -54,7 +54,7 @@ const breadcrumps = [
 
     <div
       v-else
-      class="block min-[900px]:grid grid-cols-12 gap-4 mt-5 mb-10 max-w-[1200px]"
+      class="block min-[900px]:grid grid-cols-12 gap-4 mt-5 mb-10 max-w-[1100px]"
     >
       <ul class="space-y-4 lg:col-span-8 col-span-6">
         <CartProduct

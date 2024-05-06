@@ -2,7 +2,7 @@
 import Card from "@/components/Card.vue";
 </script>
 <template>
-  <Card class="max-w-[1100px]">
+  <Card class="max-w-[1100px] mb-10">
     <div
       class="animate-pulse grid grid-cols-1 md:grid-cols-2 gap-6 p-6 mt-10 mb-10 space-y-2"
     >
