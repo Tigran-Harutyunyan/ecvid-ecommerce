@@ -3,9 +3,9 @@ import queryString from "query-string";
 import { ref, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import ProductCard from "@/components/ProductCard.vue";
+import ProductsSkeleton from "@/components/skeleton/ProductsSkeleton.vue";
 import { useAPI } from "@/composables/useAPI";
 import Pagination from "@/components/Pagination.vue";
-import Card from "@/components/Card.vue";
 import { type Product } from "@/types";
 
 interface Props {
@@ -93,14 +93,7 @@ watch(
 </script>
 
 <template>
-  <div
-    v-if="isLoading"
-    class="grid gap-8 grid-cols-1 min-[480px]:grid-cols-2 2xs:grid-cols-2 md:gap-6 md:grid-cols-2 min-[1100px]:grid-cols-3 mb-10 md:mb-5"
-  >
-    <Card class="relative animate-pulse" v-for="n in 10" :key="n">
-      <div class="block h-80 w-full bg-gray-200 rounded-md"></div>
-    </Card>
-  </div>
+  <ProductsSkeleton v-if="isLoading" />
 
   <template v-else>
     <div v-if="pagination.count === 0" class="text-secondary">
