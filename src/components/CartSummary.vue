@@ -11,7 +11,8 @@ const emit = defineEmits(["purchased"]);
 const { totalPrice, totalItems } = storeToRefs(useCart());
 const { clearCart } = useCart();
 
-const inputValue = ref("VSF2020");
+const DEMO_CODE = "VSF2020";
+const inputValue = ref(DEMO_CODE);
 const promoCode = ref(0);
 const total = computed(() => totalPrice.value + promoCode.value);
 const isLoading = ref(false);
@@ -19,11 +20,11 @@ const isLoading = ref(false);
 const checkPromoCode = () => {
   if (
     (promoCode.value === -100 &&
-      inputValue.value.toUpperCase() === "VSF2020") ||
+      inputValue.value.toUpperCase() === DEMO_CODE) ||
     !inputValue.value
   )
     return;
-  if (inputValue.value.toUpperCase() === "VSF2020") {
+  if (inputValue.value.toUpperCase() === DEMO_CODE) {
     promoCode.value = -100;
     notify({
       type: "success",
@@ -46,7 +47,7 @@ const removePromoCode = () => {
 };
 
 const formatPrice = (price: number) => {
-  // This should be dynamic, based on  locale
+  // This should be dynamic, based on locale
   return new Intl.NumberFormat("ru", {
     style: "currency",
     currency: "RUB",
@@ -60,6 +61,7 @@ const pay = () => {
     isLoading.value = false;
     emit("purchased");
     clearCart();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, 1000);
 };
 </script>
