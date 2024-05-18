@@ -95,27 +95,40 @@ watch(
 
 <template>
   <ProductsSkeleton v-if="isLoading" />
+  <Transition>
+    <div v-if="!isLoading">
+      <div v-if="pagination.count === 0" class="text-secondary">
+        <h2 class="mb-1">Product not found 🕵🏻‍♀️</h2>
+        <p>Oops! The requested product was not found.</p>
+      </div>
+      <div
+        v-if="products.length"
+        class="grid gap-8 grid-cols-1 min-[480px]:grid-cols-2 2xs:grid-cols-2 md:gap-6 md:grid-cols-2 min-[1100px]:grid-cols-3 mb-10 md:mb-5"
+      >
+        <ProductCard v-for="product in products" :product="product" />
+      </div>
 
-  <template v-else>
-    <div v-if="pagination.count === 0" class="text-secondary">
-      <h2 class="mb-1">Product not found 🕵🏻‍♀️</h2>
-      <p>Oops! The requested product was not found.</p>
+      <Pagination
+        v-if="pagination.count !== 0"
+        :totalItems="pagination.total"
+        :offset="pagination.offset"
+        :pageSize="pagination.limit"
+        :maxPages="pagination.count"
+        @change="onPaginationChange"
+        class="mt-8 mb-3"
+      />
     </div>
-    <div
-      v-if="products.length"
-      class="grid gap-8 grid-cols-1 min-[480px]:grid-cols-2 2xs:grid-cols-2 md:gap-6 md:grid-cols-2 min-[1100px]:grid-cols-3 mb-10 md:mb-5"
-    >
-      <ProductCard v-for="product in products" :product="product" />
-    </div>
-
-    <Pagination
-      v-if="pagination.count !== 0"
-      :totalItems="pagination.total"
-      :offset="pagination.offset"
-      :pageSize="pagination.limit"
-      :maxPages="pagination.count"
-      @change="onPaginationChange"
-      class="mt-8 mb-3"
-    />
-  </template>
+  </Transition>
 </template>
+
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 1.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>
