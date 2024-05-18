@@ -162,3 +162,8 @@ export interface Categories {
     imageUrl: string
     link: string,
 }
+
+export interface Category {
+    name: string
+    imageUrl: string
+}
