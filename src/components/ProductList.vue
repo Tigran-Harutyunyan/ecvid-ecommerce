@@ -122,8 +122,7 @@ watch(
 </template>
 
 <style scoped>
-.v-enter-active,
-.v-leave-active {
+.v-enter-active {
   transition: opacity 1.5s ease;
 }
 
