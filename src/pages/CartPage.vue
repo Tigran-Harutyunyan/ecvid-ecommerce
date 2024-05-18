@@ -33,10 +33,12 @@ const breadcrumps = [
         <div class="flex flex-col items-center space-y-2">
           <CheckIcon />
 
-          <h1 class="text-4xl font-semibold">Thank you for your purchase !</h1>
+          <h1 class="text-2xl md:text-4xl font-semibold">
+            Thank you for your purchase!
+          </h1>
           <p class="py-2 text-secondary">Item(s) will be shipped soon</p>
           <RouterLink to="/">
-            <SfButton> Home </SfButton>
+            <SfButton> Continue shopping </SfButton>
           </RouterLink>
         </div>
       </div>
