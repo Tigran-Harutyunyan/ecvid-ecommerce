@@ -17,17 +17,16 @@ const debouncedFn = useDebounceFn((val) => {
 }, 400);
 
 const handelKeyUp = (evt: KeyboardEvent) => {
-  const target = <HTMLInputElement>evt.target;
-
   let charCode = evt.which ? evt.which : evt.keyCode;
 
   if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
     evt.preventDefault();
-  } else {
-    debouncedFn(target.value);
-
-    return true;
   }
+};
+
+const onBlur = (evt: KeyboardEvent) => {
+  const target = <HTMLInputElement>evt.target;
+  debouncedFn(target.value);
 };
 </script>
 
@@ -36,6 +35,9 @@ const handelKeyUp = (evt: KeyboardEvent) => {
     size="sm"
     aria-label="Label size sm"
     :model-value="amount"
+    type="number"
     @keyup="handelKeyUp"
+    @blur="onBlur"
+    class="max-w-[60px] min-w-[60px]"
   />
 </template>
