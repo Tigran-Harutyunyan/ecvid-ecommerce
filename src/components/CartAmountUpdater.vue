@@ -2,6 +2,7 @@
 import { SfInput } from "@storefront-ui/vue";
 import { useCart } from "@/stores/cart";
 import { useDebounceFn } from "@vueuse/core";
+import { toRefs, computed } from "vue";
 
 interface Props {
   amount: number;
@@ -11,9 +12,14 @@ interface Props {
 const { productId, amount } = defineProps<Props>();
 
 const { updateCartItem } = useCart();
+const { cart } = toRefs(useCart());
+
+const productAmountInCart = computed(() => {
+  return cart.value.find((item) => item.product.id === productId)?.amount;
+});
 
 const debouncedFn = useDebounceFn((val) => {
-  updateCartItem(productId, Number(val));
+  updateCartItem(productId, val);
 }, 400);
 
 const handelKeyUp = (evt: KeyboardEvent) => {
@@ -26,7 +32,9 @@ const handelKeyUp = (evt: KeyboardEvent) => {
 
 const onBlur = (evt: KeyboardEvent) => {
   const target = <HTMLInputElement>evt.target;
-  debouncedFn(target.value);
+  const value = Number(target.value);
+  if (target.value && productAmountInCart.value === value) return;
+  debouncedFn(value);
 };
 </script>
 
@@ -39,5 +47,7 @@ const onBlur = (evt: KeyboardEvent) => {
     @keyup="handelKeyUp"
     @blur="onBlur"
     class="max-w-[60px] min-w-[60px]"
+    pattern="[0-9]*"
+    inputmode="numeric"
   />
 </template>
