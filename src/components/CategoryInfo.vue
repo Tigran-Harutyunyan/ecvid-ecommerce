@@ -37,7 +37,7 @@ const { category, loading } = defineProps<Props>();
         class="mx-auto max-w-[200px] md:max-auto"
       />
 
-      <p class="text-title text-xl w-full px-4 text-center">
+      <p class="text-title text-xl w-full px-4 text-center mt-4">
         {{ category.name }}
       </p>
     </div>
