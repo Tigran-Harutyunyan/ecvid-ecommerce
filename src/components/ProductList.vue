@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import queryString from "query-string";
-import { ref, watch } from "vue";
+import { ref, watch, toRefs } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import ProductCard from "@/components/ProductCard.vue";
 import ProductsSkeleton from "@/components/skeleton/ProductsSkeleton.vue";
@@ -14,7 +14,8 @@ interface Props {
   };
 }
 
-const { filters } = defineProps<Props>();
+const props = defineProps<Props>();
+const { filters } = toRefs(props);
 
 interface IpaginationPayload {
   query: {
@@ -72,8 +73,8 @@ const getQueryParams = () => {
     params.offset = Object.hasOwn(params, "offset") ? params.offset : String(0);
   }
 
-  if (filters) {
-    for (const [key, val] of Object.entries(filters)) {
+  if (filters.value) {
+    for (const [key, val] of Object.entries(filters.value)) {
       params[key] = val;
     }
   }
