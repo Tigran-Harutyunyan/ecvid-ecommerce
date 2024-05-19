@@ -1,7 +1,8 @@
 import { defineStore } from "pinia";
 import { ref, computed } from 'vue';
 import { type Product, CartProduct } from "@/types";
-import { notify } from "@kyvg/vue3-notification";
+import { useNotifications } from "@/composables/useNotifications";
+const { showSuccess } = useNotifications();
 
 export const useCart = defineStore("cart", () => {
     const cart = ref<CartProduct[]>([]);
@@ -29,8 +30,7 @@ export const useCart = defineStore("cart", () => {
                 cart.value = [...cart.value, newItem];
             }
 
-            notify({
-                type: "success",
+            showSuccess({
                 text: "Added to cart",
             });
         }
@@ -40,8 +40,7 @@ export const useCart = defineStore("cart", () => {
         const newCart = cart.value.filter((item: CartProduct) => item.product.id !== id);
         cart.value = newCart;
 
-        notify({
-            type: "success",
+        showSuccess({
             text: "Removed from cart",
         });
     }
@@ -63,8 +62,7 @@ export const useCart = defineStore("cart", () => {
             });
         }
 
-        notify({
-            type: "success",
+        showSuccess({
             text: "Updated cart",
         });
     }

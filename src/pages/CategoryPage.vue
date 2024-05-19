@@ -6,10 +6,12 @@ import ProductList from "@/components/ProductList.vue";
 import CategoryInfo from "@/components/CategoryInfo.vue";
 import { useAPI } from "@/composables/useAPI";
 import Breadcrumbs from "@/components/Breadcrumbs.vue";
+import { useNotifications } from "@/composables/useNotifications";
 
 const route = useRoute();
 const category = ref();
 const isLoading = ref(true);
+const { showError } = useNotifications();
 
 const breadcrumps = [
   {
@@ -34,6 +36,9 @@ const getCategory = async () => {
       category.value = data;
     }
   } catch (error) {
+    showError({
+      error,
+    });
   } finally {
     isLoading.value = false;
   }

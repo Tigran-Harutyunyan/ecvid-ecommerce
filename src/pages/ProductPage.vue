@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import { notify } from "@kyvg/vue3-notification";
+import { useNotifications } from "@/composables/useNotifications";
 import { useRouter, useRoute } from "vue-router";
 
 import { useAPI } from "@/composables/useAPI";
@@ -11,6 +11,7 @@ import Card from "@/components/Card.vue";
 import ProductSkeleton from "@/components/skeleton/ProductSkeleton.vue";
 import Breadcrumbs from "@/components/Breadcrumbs.vue";
 
+const { showError } = useNotifications();
 const route = useRoute();
 const isLoading = ref(true);
 const product = ref<Product>();
@@ -32,8 +33,7 @@ const getProduct = async (productId: string) => {
     const data = await useAPI(url);
 
     if (data.code) {
-      notify({
-        type: "error",
+      showError({
         text: "Product not found",
       });
       router.push("/");
@@ -43,6 +43,9 @@ const getProduct = async (productId: string) => {
       product.value = data;
     }
   } catch (error) {
+    showError({
+      error,
+    });
   } finally {
     isLoading.value = false;
   }

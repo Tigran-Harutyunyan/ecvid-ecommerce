@@ -7,6 +7,7 @@ import ProductsSkeleton from "@/components/skeleton/ProductsSkeleton.vue";
 import { useAPI } from "@/composables/useAPI";
 import Pagination from "@/components/Pagination.vue";
 import { type Product } from "@/types";
+import { useNotifications } from "@/composables/useNotifications";
 
 interface Props {
   filters?: {
@@ -31,6 +32,8 @@ const ITEMS_PER_PAGE = 6;
 
 const router = useRouter();
 const route = useRoute();
+
+const { showError } = useNotifications();
 
 const onPaginationChange = (query: IpaginationPayload) => {
   router.push(`${location.pathname}?${queryString.stringify(query)}`);
@@ -57,6 +60,9 @@ const getProducts = async (queryParams?: string) => {
       };
     }
   } catch (error) {
+    showError({
+      error,
+    });
   } finally {
     isLoading.value = false;
   }

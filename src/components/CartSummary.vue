@@ -2,9 +2,11 @@
 import { ref, computed } from "vue";
 import Card from "@/components/Card.vue";
 import { SfButton, SfInput, SfLoaderCircular } from "@storefront-ui/vue";
-import { notify } from "@kyvg/vue3-notification";
+import { useNotifications } from "@/composables/useNotifications";
 import { storeToRefs } from "pinia";
 import { useCart } from "@/stores/cart";
+
+const { showSuccess, showError } = useNotifications();
 
 const emit = defineEmits(["purchased"]);
 
@@ -26,13 +28,11 @@ const checkPromoCode = () => {
     return;
   if (inputValue.value.toUpperCase() === DEMO_CODE) {
     promoCode.value = -100;
-    notify({
-      type: "success",
+    showSuccess({
       text: "Applied promo code ",
     });
   } else {
-    notify({
-      type: "error",
+    showError({
       text: "Incorrect promo code",
     });
   }
@@ -40,8 +40,7 @@ const checkPromoCode = () => {
 
 const removePromoCode = () => {
   promoCode.value = 0;
-  notify({
-    type: "success",
+  showError({
     text: "Removed promo code ",
   });
 };
