@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useNotifications } from "@/composables/useNotifications";
 
 export const useAPI = async (url: string, params?: any) => {
 
@@ -6,6 +7,8 @@ export const useAPI = async (url: string, params?: any) => {
     const STORE_ID = import.meta.env.VITE_ECWID_STORE_ID;
     const ECWID_API_KEY = import.meta.env.VITE_ECWID_API_KEY;
     const API_ENDPOINT = `${ECWID_API_URL}${STORE_ID}`;
+
+    const { showError } = useNotifications();
 
     const headers = {
         'Content-Type': 'application/json',
@@ -18,8 +21,8 @@ export const useAPI = async (url: string, params?: any) => {
             params,
         });
         return data;
-    } catch (err) {
-        console.log(err);
-        return err;
+    } catch (error) {
+        showError({ error })
+        return error;
     }
 }
