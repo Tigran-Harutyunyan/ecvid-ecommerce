@@ -24,13 +24,13 @@ const { category, loading } = defineProps<Props>();
     </div>
     <div class="pb-6" v-else>
       <img
-        :src="category.imageUrl"
-        :alt="category.name"
+        :src="category?.imageUrl"
+        :alt="category?.name"
         class="mx-auto max-w-[200px] md:max-auto"
       />
 
       <p class="text-title text-xl w-full px-4 text-center mt-4">
-        {{ category.name }}
+        {{ category?.name }}
       </p>
     </div>
   </Card>
