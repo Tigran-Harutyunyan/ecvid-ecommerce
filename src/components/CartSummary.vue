@@ -33,6 +33,7 @@ const checkPromoCode = () => {
     });
   } else {
     showError({
+      title: " ",
       text: "Incorrect promo code",
     });
   }
@@ -40,7 +41,7 @@ const checkPromoCode = () => {
 
 const removePromoCode = () => {
   promoCode.value = 0;
-  showError({
+  showSuccess({
     text: "Removed promo code ",
   });
 };

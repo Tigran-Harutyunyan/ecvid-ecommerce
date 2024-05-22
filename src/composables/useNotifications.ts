@@ -14,7 +14,7 @@ export const useNotifications = () => {
         }
 
         notify({
-            title: title || "Something went wrong",
+            title,
             text: errorMessage,
             type: "error",
         });
@@ -23,7 +23,7 @@ export const useNotifications = () => {
 
     const showSuccess = ({ title, text }: { title?: string, text?: string }) => {
         notify({
-            title: title || "Success",
+            title,
             text,
             type: "success",
         });
