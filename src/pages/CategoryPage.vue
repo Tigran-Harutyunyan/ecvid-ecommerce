@@ -13,12 +13,16 @@ const category = ref();
 const isLoading = ref(true);
 const { showError } = useNotifications();
 
-const breadcrumps = [
-  {
-    label: "Category details",
-    link: "",
-  },
-];
+const breadcrumps = computed(() => {
+  if (!category.value) return [];
+
+  return [
+    {
+      label: category.value.name,
+      link: "",
+    },
+  ];
+});
 
 const filters = computed(() => {
   return {

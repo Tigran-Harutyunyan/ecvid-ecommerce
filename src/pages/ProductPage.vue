@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 import { useNotifications } from "@/composables/useNotifications";
 import { useRouter, useRoute } from "vue-router";
 
@@ -17,12 +17,38 @@ const isLoading = ref(true);
 const product = ref<Product>();
 const router = useRouter();
 
-const breadcrumps = [
-  {
-    label: "Product details",
-    link: "",
-  },
-];
+const breadcrumps = computed(() => {
+  if (!productCategory.value || !product.value) return [];
+
+  return [
+    {
+      label: productCategory.value?.name,
+      link: `/category/${productCategory.value.id}`,
+    },
+    {
+      label: product.value.name,
+      link: "",
+    },
+  ];
+});
+
+const getCategory = async (categoryID: number) => {
+  isLoading.value = true;
+  try {
+    const data = await useAPI(`/categories/${categoryID}`);
+    if (data) {
+      productCategory.value = data;
+    }
+  } catch (error) {
+    showError({
+      error,
+    });
+  } finally {
+    isLoading.value = false;
+  }
+};
+
+const productCategory = ref();
 
 const getProduct = async (productId: string) => {
   isLoading.value = true;
@@ -41,6 +67,9 @@ const getProduct = async (productId: string) => {
 
     if (data?.id) {
       product.value = data;
+      if (data?.defaultCategoryId) {
+        getCategory(data?.defaultCategoryId);
+      }
     }
   } catch (error) {
     showError({

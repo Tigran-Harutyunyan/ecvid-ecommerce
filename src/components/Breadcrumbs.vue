@@ -18,7 +18,7 @@ const { breadcrumps } = defineProps<Props>();
       v-for="({ label, link }, index) in breadcrumps"
     >
       <template v-if="link">
-        <RouterLink class="breadcrump-link" to="/" v-if="link">
+        <RouterLink class="breadcrump-link" :to="link" v-if="link">
           {{ label }}
           <BreadcrumpIcon v-if="index < breadcrumps.length - 1" />
         </RouterLink>
