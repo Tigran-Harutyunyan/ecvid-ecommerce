@@ -13,7 +13,7 @@ export const useMain = defineStore("main", () => {
     const toggleWishlist = (id: number) => {
 
         if (wishList.value.includes(id)) {
-            wishList.value = wishList.value.filter(item => item !== id)
+            wishList.value = wishList.value.filter((item: number) => item !== id)
         } else {
             wishList.value.push(id)
         }

@@ -8,8 +8,8 @@ export const useCart = defineStore("cart", () => {
     const cart = ref<CartProduct[]>([]);
     const amount = ref(0);
     const total = ref(0);
-    const totalItems = computed(() => cart.value.reduce((acc, cur) => acc + cur.amount, 0));
-    const totalPrice = computed(() => cart.value.reduce((acc, cur) => acc + cur.product.price * cur.amount, 0));
+    const totalItems = computed(() => cart.value.reduce((acc: number, cur: CartProduct) => acc + cur.amount, 0));
+    const totalPrice = computed(() => cart.value.reduce((acc: number, cur: CartProduct) => acc + cur.product.price * cur.amount, 0));
 
     const addToCart = (product: Product, count: number): void => {
         if (product) {
