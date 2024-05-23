@@ -15,6 +15,7 @@ const { showError } = useNotifications();
 const route = useRoute();
 const isLoading = ref(true);
 const product = ref<Product>();
+const productCategory = ref();
 const router = useRouter();
 
 const breadcrumps = computed(() => {
@@ -47,8 +48,6 @@ const getCategory = async (categoryID: number) => {
     isLoading.value = false;
   }
 };
-
-const productCategory = ref();
 
 const getProduct = async (productId: string) => {
   isLoading.value = true;
