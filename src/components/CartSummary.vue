@@ -61,7 +61,7 @@ const pay = () => {
     isLoading.value = false;
     emit("purchased");
     clearCart();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scroll({ top: 0, behavior: "smooth" });
   }, 1000);
 };
 </script>
