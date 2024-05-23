@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { SfCounter, SfListItem } from "@storefront-ui/vue";
-
 import { RouterLink } from "vue-router";
 import { useMain } from "@/stores/main";
 import { storeToRefs } from "pinia";
+
 const { categories } = storeToRefs(useMain());
 </script>
 

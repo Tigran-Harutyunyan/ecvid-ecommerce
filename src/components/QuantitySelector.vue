@@ -15,18 +15,18 @@ const { min, max } = withDefaults(defineProps<Props>(), {
 });
 
 const showStock = ref(false);
-
 const inputId = useId();
+
 const { count, inc, dec, set } = useCounter(1, {
   min: min,
   max: max,
 });
 
-function handleOnChange(event: Event) {
+const handleOnChange = (event: Event) => {
   const currentValue = (event.target as HTMLInputElement)?.value;
   const nextValue = parseFloat(currentValue);
   set(clamp(nextValue, min, max));
-}
+};
 
 const onDecrement = () => {
   dec();
