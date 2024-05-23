@@ -5,11 +5,11 @@ import { SfButton } from "@storefront-ui/vue";
 <template>
   <div class="flex justify-center my-10">
     <div class="w-100 text-secondary text-center">
-      <h2 class="mb-3">Page Not Found 🕵🏻‍♀️</h2>
+      <img src="/404.jpg" alt="Error page" class="max-w-xl mx-4 w-full" />
+      <h2 class="mb-4 text-xl md:text-2xl">Page Not Found 🕵🏻‍♀️</h2>
       <RouterLink to="/">
         <SfButton> Home </SfButton>
       </RouterLink>
-      <img src="/404.svg" alt="Error page" class="img-fluid" />
     </div>
   </div>
 </template>
