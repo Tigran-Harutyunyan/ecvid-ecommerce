@@ -6,6 +6,7 @@ import ProductCard from "@/components/ProductCard.vue";
 import ProductsSkeleton from "@/components/skeleton/ProductsSkeleton.vue";
 import { useAPI } from "@/composables/useAPI";
 import Pagination from "@/components/Pagination.vue";
+import Error from "@/components/Error.vue";
 import { type Product } from "@/types";
 import { useNotifications } from "@/composables/useNotifications";
 
@@ -29,6 +30,7 @@ const products = ref<Product[]>([]);
 const pagination = ref();
 const isLoading = ref(true);
 const ITEMS_PER_PAGE = 6;
+const errorMessage = ref();
 
 const router = useRouter();
 const route = useRoute();
@@ -41,6 +43,7 @@ const onPaginationChange = (query: IpaginationPayload) => {
 
 const getProducts = async (queryParams?: string) => {
   isLoading.value = true;
+  errorMessage.value = "";
 
   let url = "/products";
 
@@ -58,6 +61,9 @@ const getProducts = async (queryParams?: string) => {
         total,
         count,
       };
+    }
+    if (data.code && data.message) {
+      errorMessage.value = data.message;
     }
   } catch (error) {
     showError({
@@ -100,30 +106,33 @@ watch(
 </script>
 
 <template>
-  <ProductsSkeleton v-if="isLoading" />
-  <Transition>
-    <div v-if="!isLoading">
-      <div v-if="pagination.count === 0" class="text-secondary">
-        <h2 class="mb-1">Oops! The requested product was not found. 🕵🏻‍♀️</h2>
-      </div>
-      <div
-        v-if="products.length"
-        class="grid gap-8 grid-cols-1 min-[480px]:grid-cols-2 2xs:grid-cols-2 md:gap-6 md:grid-cols-2 min-[1100px]:grid-cols-3 mb-10 md:mb-5"
-      >
-        <ProductCard v-for="product in products" :product="product" />
-      </div>
+  <Error v-if="errorMessage" :error="errorMessage" />
+  <template v-else>
+    <ProductsSkeleton v-if="isLoading" />
+    <Transition>
+      <div v-if="!isLoading">
+        <div v-if="pagination.count === 0" class="text-secondary">
+          <h2 class="mb-1">Oops! The requested product was not found. 🕵🏻‍♀️</h2>
+        </div>
+        <div
+          v-if="products.length"
+          class="grid gap-8 grid-cols-1 min-[480px]:grid-cols-2 2xs:grid-cols-2 md:gap-6 md:grid-cols-2 min-[1100px]:grid-cols-3 mb-10 md:mb-5"
+        >
+          <ProductCard v-for="product in products" :product="product" />
+        </div>
 
-      <Pagination
-        v-if="pagination.count !== 0"
-        :totalItems="pagination.total"
-        :offset="pagination.offset"
-        :pageSize="pagination.limit"
-        :maxPages="pagination.count"
-        @change="onPaginationChange"
-        class="mt-8 mb-3"
-      />
-    </div>
-  </Transition>
+        <Pagination
+          v-if="pagination.count !== 0"
+          :totalItems="pagination.total"
+          :offset="pagination.offset"
+          :pageSize="pagination.limit"
+          :maxPages="pagination.count"
+          @change="onPaginationChange"
+          class="mt-8 mb-3"
+        />
+      </div>
+    </Transition>
+  </template>
 </template>
 
 <style scoped>
