@@ -104,8 +104,7 @@ watch(
   <Transition>
     <div v-if="!isLoading">
       <div v-if="pagination.count === 0" class="text-secondary">
-        <h2 class="mb-1">Product not found 🕵🏻‍♀️</h2>
-        <p>Oops! The requested product was not found.</p>
+        <h2 class="mb-1">Oops! The requested product was not found. 🕵🏻‍♀️</h2>
       </div>
       <div
         v-if="products.length"

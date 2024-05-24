@@ -4,6 +4,8 @@ import { ref, onMounted } from "vue";
 import { SfButton, SfInput, SfIconSearch } from "@storefront-ui/vue";
 import queryString from "query-string";
 import { useRouter } from "vue-router";
+// @ts-ignore
+import { debounceTimeout } from "@/lib/constants";
 
 const inputValue = ref();
 const router = useRouter();
@@ -20,7 +22,7 @@ const search = () => {
 
 const debouncedFn = useDebounceFn(() => {
   search();
-}, 400);
+}, debounceTimeout);
 
 onMounted(() => {
   let parsedQueryParams = queryString.parse(location.search);

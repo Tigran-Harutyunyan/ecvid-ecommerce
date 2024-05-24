@@ -3,6 +3,8 @@ import { SfInput } from "@storefront-ui/vue";
 import { useCart } from "@/stores/cart";
 import { useDebounceFn } from "@vueuse/core";
 import { toRefs, computed } from "vue";
+// @ts-ignore
+import { debounceTimeout } from "@/lib/constants";
 
 interface Props {
   amount: number;
@@ -20,7 +22,7 @@ const productAmountInCart = computed(() => {
 
 const debouncedFn = useDebounceFn((val) => {
   updateCartItem(productId, val);
-}, 400);
+}, debounceTimeout);
 
 const handelKeyUp = (evt: KeyboardEvent) => {
   let charCode = evt.which ? evt.which : evt.keyCode;
