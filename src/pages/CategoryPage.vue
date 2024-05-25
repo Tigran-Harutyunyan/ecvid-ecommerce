@@ -8,10 +8,13 @@ import { useAPI } from "@/composables/useAPI";
 import Breadcrumbs from "@/components/Breadcrumbs.vue";
 import Error from "@/components/Error.vue";
 import { useNotifications } from "@/composables/useNotifications";
+import { useCollections } from "@/stores/collections";
+
+const { setCategory, getCategory } = useCollections();
 
 const route = useRoute();
 const category = ref();
-const isLoading = ref(true);
+const isLoading = ref(false);
 const errorMessage = ref();
 const { showError } = useNotifications();
 
@@ -32,19 +35,25 @@ const filters = computed(() => {
   };
 });
 
-const getCategory = async () => {
-  isLoading.value = true;
+const fetchCategory = async () => {
   errorMessage.value = "";
 
+  const routeParam = route.params.categoryID as string;
+
+  if (getCategory(routeParam)) {
+    category.value = getCategory(routeParam);
+  } else {
+    isLoading.value = true;
+  }
+
   try {
-    const data = await useAPI(
-      `/categories/${route.params.categoryID as string}`
-    );
+    const data = await useAPI(`/categories/${routeParam}`);
 
     if (data.code && data.message) {
       errorMessage.value = data.message;
     } else {
       category.value = data;
+      setCategory({ id: routeParam, item: data });
     }
   } catch (error) {
     showError({
@@ -58,7 +67,7 @@ const getCategory = async () => {
 watch(
   () => route.params,
   () => {
-    getCategory();
+    fetchCategory();
   },
   {
     immediate: true,

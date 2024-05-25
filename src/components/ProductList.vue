@@ -9,6 +9,9 @@ import Pagination from "@/components/Pagination.vue";
 import Error from "@/components/Error.vue";
 import { type Product } from "@/types";
 import { useNotifications } from "@/composables/useNotifications";
+import { useCollections } from "@/stores/collections";
+
+const { setProductList, getProductList } = useCollections();
 
 interface Props {
   filters?: {
@@ -28,7 +31,7 @@ interface IpaginationPayload {
 
 const products = ref<Product[]>([]);
 const pagination = ref();
-const isLoading = ref(true);
+const isLoading = ref(false);
 const ITEMS_PER_PAGE = 6;
 const errorMessage = ref();
 
@@ -42,10 +45,14 @@ const onPaginationChange = (query: IpaginationPayload) => {
 };
 
 const getProducts = async (queryParams?: string) => {
-  isLoading.value = true;
+  let url = "/products";
   errorMessage.value = "";
 
-  let url = "/products";
+  if (getProductList(queryParams as string)) {
+    products.value = getProductList(queryParams as string);
+  } else {
+    isLoading.value = true;
+  }
 
   if (queryParams) url += `?${queryParams}`;
 
@@ -55,6 +62,11 @@ const getProducts = async (queryParams?: string) => {
     if (data?.items && Array.isArray(data?.items)) {
       const { items, limit, offset, total, count } = data;
       products.value = items as Product[];
+      setProductList({
+        id: queryParams as string,
+        items,
+      });
+
       pagination.value = {
         limit,
         offset,
@@ -111,7 +123,7 @@ watch(
     <ProductsSkeleton v-if="isLoading" />
     <Transition>
       <div v-if="!isLoading">
-        <div v-if="pagination.count === 0" class="text-secondary">
+        <div v-if="pagination && pagination.count === 0" class="text-secondary">
           <h2 class="mb-1">Oops! The requested product was not found. 🕵🏻‍♀️</h2>
         </div>
         <div
@@ -122,7 +134,7 @@ watch(
         </div>
 
         <Pagination
-          v-if="pagination.count !== 0"
+          v-if="pagination && pagination.count !== 0"
           :totalItems="pagination.total"
           :offset="pagination.offset"
           :pageSize="pagination.limit"

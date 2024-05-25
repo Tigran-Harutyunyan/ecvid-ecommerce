@@ -10,10 +10,13 @@ import { type Product } from "@/types";
 import Card from "@/components/Card.vue";
 import ProductSkeleton from "@/components/skeleton/ProductSkeleton.vue";
 import Breadcrumbs from "@/components/Breadcrumbs.vue";
+import { useCollections } from "@/stores/collections";
+
+const { setProduct, getProduct } = useCollections();
 
 const { showError } = useNotifications();
 const route = useRoute();
-const isLoading = ref(true);
+const isLoading = ref(false);
 const product = ref<Product>();
 const productCategory = ref();
 const router = useRouter();
@@ -34,7 +37,6 @@ const breadcrumps = computed(() => {
 });
 
 const getCategory = async (categoryID: number) => {
-  isLoading.value = true;
   try {
     const data = await useAPI(`/categories/${categoryID}`);
     if (data) {
@@ -49,10 +51,14 @@ const getCategory = async (categoryID: number) => {
   }
 };
 
-const getProduct = async (productId: string) => {
-  isLoading.value = true;
-
+const fetchProduct = async (productId: string) => {
   let url = `/products/${productId}`;
+
+  if (getProduct(productId)) {
+    product.value = getProduct(productId);
+  } else {
+    isLoading.value = true;
+  }
 
   try {
     const data = await useAPI(url);
@@ -66,6 +72,8 @@ const getProduct = async (productId: string) => {
 
     if (data?.id) {
       product.value = data;
+      setProduct({ id: productId, item: data });
+
       if (data?.defaultCategoryId) {
         getCategory(data?.defaultCategoryId);
       }
@@ -83,7 +91,7 @@ watch(
   () => route.params,
   () => {
     if (route.params.id) {
-      getProduct(route.params.id as string);
+      fetchProduct(route.params.id as string);
     }
   },
   {
