@@ -39,9 +39,10 @@ const fetchCategory = async () => {
   errorMessage.value = "";
 
   const routeParam = route.params.categoryID as string;
+  const cache = getCategory(routeParam);
 
-  if (getCategory(routeParam)) {
-    category.value = getCategory(routeParam);
+  if (cache) {
+    category.value = cache;
   } else {
     isLoading.value = true;
   }

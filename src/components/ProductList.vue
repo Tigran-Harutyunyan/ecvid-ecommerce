@@ -47,9 +47,10 @@ const onPaginationChange = (query: IpaginationPayload) => {
 const getProducts = async (queryParams?: string) => {
   let url = "/products";
   errorMessage.value = "";
+  const cache = getProductList(queryParams as string);
 
-  if (getProductList(queryParams as string)) {
-    products.value = getProductList(queryParams as string);
+  if (cache) {
+    products.value = cache;
   } else {
     isLoading.value = true;
   }

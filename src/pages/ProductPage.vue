@@ -53,9 +53,10 @@ const getCategory = async (categoryID: number) => {
 
 const fetchProduct = async (productId: string) => {
   let url = `/products/${productId}`;
+  const cache = getProduct(productId);
 
-  if (getProduct(productId)) {
-    product.value = getProduct(productId);
+  if (cache) {
+    product.value = cache;
   } else {
     isLoading.value = true;
   }
