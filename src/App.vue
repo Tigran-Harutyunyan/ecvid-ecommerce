@@ -4,7 +4,11 @@ import Layout from "@/components/Layout.vue";
 
 <template>
   <Layout>
-    <RouterView />
+    <router-view v-slot="{ Component }">
+      <transition name="zoom-fade" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </Layout>
 
   <notifications position="bottom right" />

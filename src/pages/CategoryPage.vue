@@ -77,17 +77,19 @@ watch(
 </script>
 
 <template>
-  <Error v-if="errorMessage" :error="errorMessage" />
+  <div>
+    <Error v-if="errorMessage" :error="errorMessage" />
 
-  <template v-else>
-    <Breadcrumbs :breadcrumps="breadcrumps" />
-    <div class="md:flex md:justify-start gap-6 mt-6">
-      <CategoryInfo :category="category" :loading="isLoading" />
+    <template v-else>
+      <Breadcrumbs :breadcrumps="breadcrumps" />
+      <div class="md:flex md:justify-start gap-6 mt-6">
+        <CategoryInfo :category="category" :loading="isLoading" />
 
-      <div class="flex-1 mt-8 md:mt-0">
-        <Search class="mb-6" />
-        <ProductList :filters="filters" />
+        <div class="flex-1 mt-8 md:mt-0">
+          <Search class="mb-6" />
+          <ProductList :filters="filters" />
+        </div>
       </div>
-    </div>
-  </template>
+    </template>
+  </div>
 </template>

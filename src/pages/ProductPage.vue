@@ -102,18 +102,20 @@ watch(
 </script>
 
 <template>
-  <Breadcrumbs :breadcrumps="breadcrumps" class="mb-5" />
+  <div>
+    <Breadcrumbs :breadcrumps="breadcrumps" class="mb-5" />
 
-  <ProductSkeleton v-if="isLoading" />
+    <ProductSkeleton v-if="isLoading" />
 
-  <Card
-    v-if="!isLoading && product"
-    class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 mb-10 max-w-[1100px]"
-  >
-    <ProductImages
-      v-if="product?.galleryImages"
-      :images="product?.galleryImages"
-    />
-    <ProductInfo :product="product" />
-  </Card>
+    <Card
+      v-if="!isLoading && product"
+      class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 mb-10 max-w-[1100px]"
+    >
+      <ProductImages
+        v-if="product?.galleryImages"
+        :images="product?.galleryImages"
+      />
+      <ProductInfo :product="product" />
+    </Card>
+  </div>
 </template>

@@ -25,51 +25,53 @@ const breadcrumps = [
 </script>
 
 <template>
-  <Breadcrumbs :breadcrumps="breadcrumps" class="mb-5" />
+  <div>
+    <Breadcrumbs :breadcrumps="breadcrumps" class="mb-5" />
 
-  <div v-if="showPaySuccessMessage" class="text-center p-10">
-    <div class="flex items-center justify-center">
-      <div>
-        <div class="flex flex-col items-center space-y-2">
-          <CheckIcon />
+    <div v-if="showPaySuccessMessage" class="text-center p-10">
+      <div class="flex items-center justify-center">
+        <div>
+          <div class="flex flex-col items-center space-y-2">
+            <CheckIcon />
 
-          <h1 class="text-2xl md:text-4xl font-semibold">
-            Thank you for your purchase!
-          </h1>
-          <p class="py-2 text-secondary">Item(s) will be shipped soon</p>
-          <RouterLink to="/">
-            <SfButton> Continue shopping </SfButton>
-          </RouterLink>
+            <h1 class="text-2xl md:text-4xl font-semibold">
+              Thank you for your purchase!
+            </h1>
+            <p class="py-2 text-secondary">Item(s) will be shipped soon</p>
+            <RouterLink to="/">
+              <SfButton> Continue shopping </SfButton>
+            </RouterLink>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <template v-else>
-    <div
-      v-if="cart.length === 0"
-      class="w-full flex flex-col items-center mt-10 p-10"
-    >
-      <SfIconShoppingCart size="2xl" class="text-primary-700 mx-auto" />
-      <div class="mt-3">Cart is empty</div>
-    </div>
+    <template v-else>
+      <div
+        v-if="cart.length === 0"
+        class="w-full flex flex-col items-center mt-10 p-10"
+      >
+        <SfIconShoppingCart size="2xl" class="text-primary-700 mx-auto" />
+        <div class="mt-3">Cart is empty</div>
+      </div>
 
-    <div
-      v-else
-      class="block min-[900px]:grid grid-cols-12 gap-4 mt-5 mb-10 max-w-[1100px]"
-    >
-      <ul class="space-y-4 lg:col-span-8 col-span-6">
-        <CartProduct
-          :cartItem="item"
-          v-for="item in cart"
-          :key="item.product.id"
+      <div
+        v-else
+        class="block min-[900px]:grid grid-cols-12 gap-4 mt-5 mb-10 max-w-[1100px]"
+      >
+        <ul class="space-y-4 lg:col-span-8 col-span-6">
+          <CartProduct
+            :cartItem="item"
+            v-for="item in cart"
+            :key="item.product.id"
+          />
+        </ul>
+
+        <CartSummary
+          class="lg:col-span-4 col-span-6 max-[900px]:mt-5"
+          @purchased="onPurchaseSuccess"
         />
-      </ul>
-
-      <CartSummary
-        class="lg:col-span-4 col-span-6 max-[900px]:mt-5"
-        @purchased="onPurchaseSuccess"
-      />
-    </div>
-  </template>
+      </div>
+    </template>
+  </div>
 </template>

@@ -32,3 +32,33 @@ body > div {
   @apply flex items-center text-sm text-secondary  hover:text-primary-700 focus:outline-none focus:text-primary-900     
 } 
  
+/* // ///////////////////////////////////////////////
+// Zoom Fade page transition
+// /////////////////////////////////////////////// */
+
+.zoom-fade-enter-active,
+.zoom-fade-leave-active {
+  transition: transform 0.45s, opacity 0.48s ease-in-out;
+}
+.zoom-fade-enter {
+  transform: scale(0.97);
+  opacity: 0;
+}
+
+.zoom-fade-leave-to {
+  transform: scale(1.03);
+  opacity: 0;
+}
+/* // ///////////////////////////////////////////////
+// Fade Regular page transition
+// /////////////////////////////////////////////// */
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.28s ease-in-out;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
