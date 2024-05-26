@@ -5,7 +5,7 @@ import Layout from "@/components/Layout.vue";
 <template>
   <Layout>
     <router-view v-slot="{ Component }">
-      <transition name="zoom-fade" mode="out-in">
+      <transition name="fade" mode="out-in">
         <component :is="Component" />
       </transition>
     </router-view>
