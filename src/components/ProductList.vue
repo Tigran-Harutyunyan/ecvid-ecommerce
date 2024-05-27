@@ -47,6 +47,7 @@ const onPaginationChange = (query: IpaginationPayload) => {
 const getProducts = async (queryParams?: string) => {
   let url = "/products";
   errorMessage.value = "";
+  pagination.value = null;
   const cache = getProductList(queryParams as string);
 
   if (cache) {

@@ -22,7 +22,6 @@ type SelectOption = {
   value: number;
 };
 
-// These values are better off to come as props
 const options: SelectOption[] = numbersPerPage;
 
 const { close, toggle, isOpen } = useDisclosure({ initialValue: false });

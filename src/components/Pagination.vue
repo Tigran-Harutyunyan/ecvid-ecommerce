@@ -46,7 +46,7 @@ const setPage = (pageNumber: number) => {
 </script>
 <template>
   <nav
-    v-show="totalItems >= 3"
+    v-show="totalItems > maxPages"
     class="flex justify-between items-end border-t border-neutral-200"
     role="navigation"
     aria-label="pagination"
