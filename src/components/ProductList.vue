@@ -44,58 +44,55 @@ const onPaginationChange = (query: IpaginationPayload) => {
   router.push(`${location.pathname}?${queryString.stringify(query)}`);
 };
 
-const getProducts = async (queryParams?: string) => {
-  let url = "/products";
-  errorMessage.value = "";
-  pagination.value = null;
-  const cache = getProductList(queryParams as string);
-
-  if (cache) {
-    products.value = cache;
-  } else {
-    isLoading.value = true;
-  }
-
-  if (queryParams) url += `?${queryParams}`;
-
+/**
+ * Fetches a list of products from an API endpoint, handles caching, updates the product list and pagination data,
+ * and manages loading and error states.
+ * @param queryParams Optional query parameters for the API request.
+ */
+const getProducts = async (queryParams?: string): Promise<void> => {
   try {
+    const url = queryParams ? `/products?${queryParams}` : "/products";
+    errorMessage.value = "";
+    pagination.value = null;
+    const cache = getProductList(queryParams as string);
+
+    if (cache) {
+      products.value = cache;
+    } else {
+      isLoading.value = true;
+    }
+
     const data = await useAPI(url);
 
-    if (data?.items && Array.isArray(data?.items)) {
+    if (data?.items && Array.isArray(data.items)) {
       const { items, limit, offset, total, count } = data;
       products.value = items as Product[];
-      setProductList({
-        id: queryParams as string,
-        items,
-      });
-
-      pagination.value = {
-        limit,
-        offset,
-        total,
-        count,
-      };
+      setProductList({ id: queryParams as string, items });
+      pagination.value = { limit, offset, total, count };
     }
+
     if (data.code && data.message) {
       errorMessage.value = data.message;
     }
   } catch (error) {
-    showError({
-      error,
-    });
+    showError({ error });
   } finally {
     isLoading.value = false;
   }
 };
 
-const getQueryParams = () => {
+/**
+ * Parses the current URL's query parameters, sets default values for `limit` and `offset` if they are not present,
+ * and merges any additional filters provided via props. Returns the updated query parameters as a string.
+ * @returns {string} Updated query parameters as a string.
+ */
+const getQueryParams = (): string => {
   let params = queryString.parse(location.search);
 
   if (params !== null) {
     params.limit = Object.hasOwn(params, "limit")
       ? params.limit
       : String(ITEMS_PER_PAGE);
-
     params.offset = Object.hasOwn(params, "offset") ? params.offset : String(0);
   }
 

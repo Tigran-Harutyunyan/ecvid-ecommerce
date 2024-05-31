@@ -36,7 +36,13 @@ const breadcrumps = computed(() => {
   ];
 });
 
-const getCategory = async (categoryID: number) => {
+/**
+ * Fetches category data from an API based on the given category ID.
+ * Updates the productCategory state with the retrieved data.
+ * Handles errors by displaying them and manages the loading state.
+ * @param {number} categoryID - The ID of the category to fetch.
+ */
+const getCategory = async (categoryID: string) => {
   try {
     const data = await useAPI(`/categories/${categoryID}`);
     if (data) {
@@ -51,10 +57,18 @@ const getCategory = async (categoryID: number) => {
   }
 };
 
+/**
+ * Retrieves product data based on the given product ID.
+ * @param {string} productId - The ID of the product to fetch.
+ */
 const fetchProduct = async (productId: string) => {
+  // Construct the API URL using the productId
   let url = `/products/${productId}`;
+
+  // Check if the product is cached
   const cache = getProduct(productId);
 
+  // If cached, use the cached data; otherwise, set loading state to true
   if (cache) {
     product.value = cache;
   } else {
@@ -62,8 +76,10 @@ const fetchProduct = async (productId: string) => {
   }
 
   try {
+    // Fetch product data from the API
     const data = await useAPI(url);
 
+    // Handle cases where product is not found
     if (data.code) {
       showError({
         text: "Product not found",
@@ -71,19 +87,23 @@ const fetchProduct = async (productId: string) => {
       router.push("/");
     }
 
+    // If product is found, update product state and cache it
     if (data?.id) {
       product.value = data;
       setProduct({ id: productId, item: data });
 
+      // Optionally fetch the product's category
       if (data?.defaultCategoryId) {
         getCategory(data?.defaultCategoryId);
       }
     }
   } catch (error) {
+    // Handle errors by showing error messages
     showError({
       error,
     });
   } finally {
+    // Set isLoading state to false after the operation
     isLoading.value = false;
   }
 };
