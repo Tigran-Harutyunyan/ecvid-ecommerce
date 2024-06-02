@@ -118,7 +118,7 @@ const assignRef = (
         :ref="(el) => assignRef(el, index)"
         type="button"
         :aria-current="activeIndex === index"
-        :class="`border-1 relative mx-4 shrink-0 flex-grow cursor-pointer snap-start border pb-1 transition-colors focus-visible:outline focus-visible:outline-offset md:h-auto md:w-[78px] md:flex-grow-0 ${
+        :class="`border-1 relative mx-4 shrink-0 flex-grow cursor-pointer snap-start border p-0.5 transition-colors focus-visible:outline focus-visible:outline-offset md:h-auto md:w-[78px] md:flex-grow-0 ${
           activeIndex === index ? 'border-primary-700' : 'border-transparent'
         }`"
         @mouseover="activeIndex = index"
