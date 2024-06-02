@@ -28,7 +28,7 @@ const isFavoriteItem = computed(() => {
     variant="tertiary"
     size="sm"
     square
-    class="bg-white ring-1 ring-inset ring-neutral-200 !rounded-full cursor-pointer"
+    class="cursor-pointer !rounded-full bg-white ring-1 ring-inset ring-neutral-200"
     aria-label="Add to wishlist"
   >
     <SfIconFavoriteFilled size="sm" v-if="isFavoriteItem" />

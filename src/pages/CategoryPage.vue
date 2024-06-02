@@ -72,7 +72,7 @@ watch(
   },
   {
     immediate: true,
-  }
+  },
 );
 </script>
 
@@ -82,10 +82,10 @@ watch(
 
     <template v-else>
       <Breadcrumbs :breadcrumps="breadcrumps" />
-      <div class="md:flex md:justify-start gap-6 mt-6">
+      <div class="mt-6 gap-6 md:flex md:justify-start">
         <CategoryInfo :category="category" :loading="isLoading" />
 
-        <div class="flex-1 mt-8 md:mt-0">
+        <div class="mt-8 flex-1 md:mt-0">
           <Search class="mb-6" />
           <ProductList :filters="filters" />
         </div>

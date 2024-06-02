@@ -2,7 +2,7 @@
   <RouterLink
     to="/"
     aria-label="SF Homepage"
-    class="inline-block mr-4 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm shrink-0"
+    class="mr-4 inline-block shrink-0 focus-visible:rounded-sm focus-visible:outline focus-visible:outline-offset"
   >
     <g xmlns="http://www.w3.org/2000/svg">
       <path
@@ -23,7 +23,7 @@
       <img
         src="/vsf_logo_sign_white.svg"
         alt="Sf Logo"
-        class="w-8 h-8 md:h-6 md:w-[176px] lg:w-[12.5rem] lg:h-[1.75rem]"
+        class="h-8 w-8 md:h-6 md:w-[176px] lg:h-[1.75rem] lg:w-[12.5rem]"
       />
     </picture>
   </RouterLink>

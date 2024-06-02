@@ -15,41 +15,41 @@ const { removeFromCart } = useCart();
 
 <template>
   <div
-    class="product-card flex border-b-[1px] border-neutral-200 hover:shadow-lg min-w-[320px] p-4"
+    class="product-card flex min-w-[320px] border-b-[1px] border-neutral-200 p-4 hover:shadow-lg"
   >
-    <div class="relative overflow-hidden rounded-md w-[100px] lg:w-[176px]">
+    <div class="relative w-[100px] overflow-hidden rounded-md lg:w-[176px]">
       <RouterLink :to="`product/${product.id}`">
         <img
-          class="w-full h-auto border rounded-md border-neutral-200"
+          class="h-auto w-full rounded-md border border-neutral-200"
           :src="product.imageUrl"
           :alt="product.name"
         />
       </RouterLink>
     </div>
-    <div class="flex flex-col pl-4 min-w-[180px] flex-1">
+    <div class="flex min-w-[180px] flex-1 flex-col pl-4">
       <RouterLink
         :to="`product/${product.id}`"
         variant="secondary"
-        class="no-underline typography-text-sm sm:typography-text-lg text-title"
+        class="text-title no-underline typography-text-sm sm:typography-text-lg"
       >
         {{ product.name }}
       </RouterLink>
 
       <div class="items-center sm:mt-auto sm:flex">
         <span
-          class="text-primary-700 sm:ml-auto sm:order-1 typography-text-sm sm:typography-text-lg flex-shrink-0"
+          class="flex-shrink-0 text-primary-700 typography-text-sm sm:order-1 sm:ml-auto sm:typography-text-lg"
           >{{ product.defaultDisplayedPriceFormatted }}
         </span>
-        <div class="flex items-center justify-between mt-4 sm:mt-0">
+        <div class="mt-4 flex items-center justify-between sm:mt-0">
           <CartAmountUpdater :amount="amount" :productId="product.id" />
           <button
             @click="removeFromCart(product.id)"
             aria-label="Remove"
             type="button"
-            class="text-neutral-500 typography-text-xs font-light ml-auto flex items-center px-3 py-1.5"
+            class="ml-auto flex items-center px-3 py-1.5 font-light text-neutral-500 typography-text-xs"
           >
             <SfIconDelete />
-            <span class="hidden ml-1.5 lg:block"> Remove </span>
+            <span class="ml-1.5 hidden lg:block"> Remove </span>
           </button>
         </div>
       </div>

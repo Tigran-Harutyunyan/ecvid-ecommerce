@@ -8,13 +8,13 @@ const { totalItems } = storeToRefs(useCart());
 <template>
   <RouterLink to="/shopping-cart">
     <SfButton
-      class="relative text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-900 mr-2 -ml-0.5 rounded-md"
+      class="relative -ml-0.5 mr-2 rounded-md text-white hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
       aria-label="Cart"
       variant="tertiary"
       square
     >
       <SfIconShoppingCart />
-      <SfBadge :content="totalItems" class="bg-white cart-badge" />
+      <SfBadge :content="totalItems" class="cart-badge bg-white" />
     </SfButton>
   </RouterLink>
 </template>

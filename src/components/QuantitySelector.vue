@@ -41,7 +41,7 @@ const onIncrement = () => {
 
 <template>
   <div class="inline-flex flex-col items-center">
-    <div class="flex border border-neutral-300 rounded-md">
+    <div class="flex rounded-md border border-neutral-300">
       <SfButton
         variant="tertiary"
         :disabled="count <= min"
@@ -58,7 +58,7 @@ const onIncrement = () => {
         v-model="count"
         type="number"
         readonly
-        class="appearance-none mx-2 w-8 text-center bg-transparent font-medium [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-inner-spin-button]:display-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-outer-spin-button]:display-none [&::-webkit-outer-spin-button]:m-0 [-moz-appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none disabled:placeholder-disabled-900 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm"
+        class="[&::-webkit-inner-spin-button]:display-none [&::-webkit-outer-spin-button]:display-none mx-2 w-8 appearance-none bg-transparent text-center font-medium [-moz-appearance:textfield] focus-visible:rounded-sm focus-visible:outline focus-visible:outline-offset disabled:placeholder-disabled-900 [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
         :min="min"
         :max="max"
         @input="handleOnChange"
@@ -75,7 +75,7 @@ const onIncrement = () => {
         <SfIconAdd />
       </SfButton>
     </div>
-    <p class="text-xs mt-2 text-neutral-500" v-if="showStock">
+    <p class="mt-2 text-xs text-neutral-500" v-if="showStock">
       <strong class="text-neutral-900">{{ max }}</strong> in stock
     </p>
   </div>

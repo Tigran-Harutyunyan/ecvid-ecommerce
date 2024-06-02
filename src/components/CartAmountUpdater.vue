@@ -48,7 +48,7 @@ const onBlur = (evt: KeyboardEvent) => {
     type="number"
     @keyup="handelKeyUp"
     @blur="onBlur"
-    class="max-w-[60px] min-w-[60px]"
+    class="min-w-[60px] max-w-[60px]"
     pattern="[0-9]*"
     inputmode="numeric"
   />

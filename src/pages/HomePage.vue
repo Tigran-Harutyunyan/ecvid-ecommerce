@@ -5,7 +5,7 @@ import Search from "@/components/Search.vue";
 </script>
 
 <template>
-  <div class="md:flex md:justify-start gap-6 pb-4">
+  <div class="gap-6 pb-4 md:flex md:justify-start">
     <Sidebar />
 
     <div class="flex-1">

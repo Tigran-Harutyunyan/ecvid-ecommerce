@@ -70,31 +70,31 @@ const pay = () => {
   <div>
     <Card>
       <div
-        class="flex justify-between items-end bg-neutral-100 md:bg-transparent py-2 px-4 md:px-6 md:pt-6 md:pb-4"
+        class="flex items-end justify-between bg-neutral-100 px-4 py-2 md:bg-transparent md:px-6 md:pb-4 md:pt-6"
       >
-        <p class="typography-headline-4 font-bold md:typography-headline-3">
+        <p class="font-bold typography-headline-4 md:typography-headline-3">
           Order Summary
         </p>
-        <p class="typography-text-base font-medium">
+        <p class="font-medium typography-text-base">
           (Items: {{ totalItems }})
         </p>
       </div>
-      <div class="px-4 pb-4 mt-3 md:px-6 md:pb-6 md:mt-0">
-        <div class="flex justify-between typography-text-base pb-4">
-          <div class="flex flex-col grow pr-2">
+      <div class="mt-3 px-4 pb-4 md:mt-0 md:px-6 md:pb-6">
+        <div class="flex justify-between pb-4 typography-text-base">
+          <div class="flex grow flex-col pr-2">
             <p>Items Subtotal</p>
-            <p class="typography-text-xs text-neutral-500">Original Price</p>
+            <p class="text-neutral-500 typography-text-xs">Original Price</p>
           </div>
           <div class="flex flex-col text-right">
             <p>{{ formatPrice(total) }}</p>
-            <p class="typography-text-xs text-neutral-500">
+            <p class="text-neutral-500 typography-text-xs">
               {{ formatPrice(totalPrice) }}
             </p>
           </div>
         </div>
         <div
           v-if="promoCode"
-          class="flex items-center mb-5 py-5 border-y border-neutral-200"
+          class="mb-5 flex items-center border-y border-neutral-200 py-5"
         >
           <p>PromoCode</p>
           <SfButton
@@ -108,7 +108,7 @@ const pay = () => {
         </div>
         <form
           v-else
-          class="flex gap-x-2 py-4 border-y border-neutral-200 mb-4"
+          class="mb-4 flex gap-x-2 border-y border-neutral-200 py-4"
           @submit.prevent="checkPromoCode"
         >
           <SfInput
@@ -120,7 +120,7 @@ const pay = () => {
         </form>
 
         <div
-          class="flex justify-between typography-headline-4 md:typography-headline-3 font-bold pb-4 mb-4 border-b text-primary-700 border-neutral-200"
+          class="mb-4 flex justify-between border-b border-neutral-200 pb-4 font-bold text-primary-700 typography-headline-4 md:typography-headline-3"
         >
           <p>Total</p>
           <p>{{ formatPrice(total) }}</p>

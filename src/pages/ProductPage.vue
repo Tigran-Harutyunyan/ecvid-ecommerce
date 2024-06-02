@@ -117,7 +117,7 @@ watch(
   },
   {
     immediate: true,
-  }
+  },
 );
 </script>
 
@@ -129,7 +129,7 @@ watch(
 
     <Card
       v-if="!isLoading && product"
-      class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 mb-10 max-w-[1100px]"
+      class="mb-10 grid max-w-[1100px] grid-cols-1 gap-6 p-6 md:grid-cols-2"
     >
       <ProductImages
         v-if="product?.galleryImages"

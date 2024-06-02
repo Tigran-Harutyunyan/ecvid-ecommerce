@@ -6,15 +6,15 @@ import SkeletonImageIcon from "@/components/ui/icons/SkeletonImageIcon.vue";
     <div
       v-for="n in 3"
       :key="n"
-      class="animate-pulse space-x-4 md:flex md:items-center px-2"
+      class="animate-pulse space-x-4 px-2 md:flex md:items-center"
     >
       <div
-        class="flex w-10 h-10 items-center justify-center flex-shrink-0 bg-gray-200 rounded"
+        class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded bg-gray-200"
       >
         <SkeletonImageIcon />
       </div>
       <div class="w-64">
-        <div class="h-2.5 bg-gray-200 rounded-full"></div>
+        <div class="h-2.5 rounded-full bg-gray-200"></div>
       </div>
     </div>
   </div>

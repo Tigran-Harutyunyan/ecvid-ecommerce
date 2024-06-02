@@ -39,11 +39,11 @@ watch(
           root: unrefElement(thumbsRef),
           rootMargin: "0px",
           threshold: 1,
-        }
+        },
       );
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 watch(
@@ -59,11 +59,11 @@ watch(
           root: unrefElement(thumbsRef),
           rootMargin: "0px",
           threshold: 1,
-        }
+        },
       );
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 const onDragged = (event: SfScrollableOnDragEndData) => {
@@ -76,7 +76,7 @@ const onDragged = (event: SfScrollableOnDragEndData) => {
 
 const assignRef = (
   el: Element | ComponentPublicInstance | null,
-  index: number
+  index: number,
 ) => {
   if (!el) return;
   if (index === images.length - 1) {
@@ -88,11 +88,11 @@ const assignRef = (
 </script>
 
 <template>
-  <div class="relative flex w-full max-h-[600px] aspect-[4/3]">
+  <div class="relative flex aspect-[4/3] max-h-[600px] w-full">
     <SfScrollable
       v-if="images.length > 1"
       ref="thumbsRef"
-      class="items-center w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+      class="w-full items-center [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       direction="vertical"
       :active-index="activeIndex"
       :previous-disabled="activeIndex === 0"
@@ -104,7 +104,7 @@ const assignRef = (
           v-if="!firstThumbVisible"
           v-bind="defaultProps"
           :disabled="activeIndex === 0"
-          class="absolute !rounded-full z-10 top-4 rotate-90 bg-white"
+          class="absolute top-4 z-10 rotate-90 !rounded-full bg-white"
           variant="secondary"
           size="sm"
           square
@@ -118,7 +118,7 @@ const assignRef = (
         :ref="(el) => assignRef(el, index)"
         type="button"
         :aria-current="activeIndex === index"
-        :class="`md:w-[78px] md:h-auto relative shrink-0 pb-1 mx-4 border border-1 snap-start cursor-pointer focus-visible:outline focus-visible:outline-offset transition-colors flex-grow md:flex-grow-0  ${
+        :class="`border-1 relative mx-4 shrink-0 flex-grow cursor-pointer snap-start border pb-1 transition-colors focus-visible:outline focus-visible:outline-offset md:h-auto md:w-[78px] md:flex-grow-0 ${
           activeIndex === index ? 'border-primary-700' : 'border-transparent'
         }`"
         @mouseover="activeIndex = index"
@@ -131,7 +131,7 @@ const assignRef = (
           v-if="!lastThumbVisible"
           v-bind="defaultProps"
           :disabled="activeIndex === images.length"
-          class="absolute bottom-0 !rounded-full z-10 rotate-90 bg-white"
+          class="absolute bottom-0 z-10 rotate-90 !rounded-full bg-white"
           variant="secondary"
           size="sm"
           square
@@ -141,7 +141,7 @@ const assignRef = (
       </template>
     </SfScrollable>
     <SfScrollable
-      class="w-full h-full snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+      class="h-full w-full snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       :active-index="activeIndex"
       direction="vertical"
       wrapper-class="h-full m-auto"
@@ -153,11 +153,11 @@ const assignRef = (
       <div
         v-for="({ imageUrl }, index) in images"
         :key="index"
-        class="flex justify-center h-full basis-full shrink-0 grow snap-center"
+        class="flex h-full shrink-0 grow basis-full snap-center justify-center"
       >
         <img
           :aria-hidden="activeIndex !== index"
-          class="object-cover w-auto h-full"
+          class="h-full w-auto object-cover"
           :src="imageUrl"
         />
       </div>

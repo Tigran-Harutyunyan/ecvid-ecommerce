@@ -17,6 +17,7 @@
     "axios": "^1.6.8",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
+    "prettier-plugin-tailwindcss": "^0.6.1",
     "query-string": "^9.0.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.2",

@@ -10,6 +10,9 @@ import { debounceTimeout } from "@/lib/constants";
 const inputValue = ref();
 const router = useRouter();
 
+/**
+ * Updates the URL query parameters with the current value of the search input field and navigates to the updated URL.
+ */
 const search = () => {
   let parsedQueryParams = queryString.parse(location.search);
   parsedQueryParams.keyword = inputValue.value;

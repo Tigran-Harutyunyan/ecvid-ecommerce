@@ -14,7 +14,7 @@ const defaultChoice = ref(option.defaultChoice);
 <template>
   <ul class="flex gap-2">
     <li
-      class="min-w-[60px] cursor-pointer border border-gray-200 hover:bg-primary-100 transition-all text-sm rounded-md text-center px-2 py-1"
+      class="min-w-[60px] cursor-pointer rounded-md border border-gray-200 px-2 py-1 text-center text-sm transition-all hover:bg-primary-100"
       v-for="(item, index) in option.choices"
       :key="index"
       @click="defaultChoice = index"

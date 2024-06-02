@@ -18,18 +18,18 @@ const { hasRequiredOption } = useProduct(product);
     <div class="relative">
       <WishlistButton
         :id="product.id"
-        class="absolute bottom-0 right-0 mr-2 mb-2"
+        class="absolute bottom-0 right-0 mb-2 mr-2"
       />
 
       <RouterLink :to="`/product/${product.id}`" class="block">
         <img
           :src="product?.imageUrl"
           :alt="product?.name"
-          class="block object-cover h-auto rounded-md aspect-square"
+          class="block aspect-square h-auto rounded-md object-cover"
         />
       </RouterLink>
     </div>
-    <div class="p-5 border-t border-neutral-200">
+    <div class="border-t border-neutral-200 p-5">
       <RouterLink
         :to="`/product/${product.id}`"
         variant="secondary"
@@ -39,7 +39,7 @@ const { hasRequiredOption } = useProduct(product);
       </RouterLink>
 
       <span
-        class="block pb-2 mt-2 typography-text-lg text-primary-700 font-semibold"
+        class="mt-2 block pb-2 font-semibold text-primary-700 typography-text-lg"
         >{{ product.defaultDisplayedPriceFormatted }}</span
       >
 

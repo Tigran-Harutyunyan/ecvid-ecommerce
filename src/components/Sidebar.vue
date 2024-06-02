@@ -4,10 +4,10 @@ import CategoriesList from "@/components/CategoriesList.vue";
 </script>
 
 <template>
-  <Card class="md:max-w-[300px] w-full mb-auto">
-    <div class="w-full hidden md:block">
+  <Card class="mb-auto w-full md:max-w-[300px]">
+    <div class="hidden w-full md:block">
       <h2
-        class="rounded-md px-6 my-4 text-lg font-semibold block text-primary-700"
+        class="my-4 block rounded-md px-6 text-lg font-semibold text-primary-700"
       >
         Categories
       </h2>

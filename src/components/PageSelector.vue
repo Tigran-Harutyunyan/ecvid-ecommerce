@@ -55,7 +55,7 @@ const selectOption = (option: SelectOption) => {
 onMounted(() => {
   if (pageSize) {
     const foundIndex: number | undefined = options.findIndex(
-      (item) => item.value === pageSize
+      (item) => item.value === pageSize,
     );
 
     if (foundIndex !== undefined) {
@@ -77,14 +77,14 @@ onMounted(() => {
       :aria-activedescendant="
         selectedOption ? `${listboxId}-${selectedOption.value}` : undefined
       "
-      class="mt-0.5 flex items-center gap-8 relative font-normal typography-text-base ring-1 ring-neutral-300 ring-inset rounded-md py-2 px-4 hover:ring-primary-700 active:ring-primary-700 active:ring-2 focus:ring-primary-700 focus:ring-2 focus-visible:outline focus-visible:outline-offset cursor-pointer"
+      class="relative mt-0.5 flex cursor-pointer items-center gap-8 rounded-md px-4 py-2 font-normal ring-1 ring-inset ring-neutral-300 typography-text-base hover:ring-primary-700 focus:ring-2 focus:ring-primary-700 focus-visible:outline focus-visible:outline-offset active:ring-2 active:ring-primary-700"
       tabindex="0"
       @keydown.space="toggle()"
       @click="toggle()"
     >
       <template v-if="selectedOption">{{ selectedOption.label }}</template>
       <SfIconExpandMore
-        class="ml-auto text-neutral-500 transition-transform ease-in-out duration-300"
+        class="ml-auto text-neutral-500 transition-transform duration-300 ease-in-out"
         :class="{ 'rotate-180': isOpen }"
       />
     </div>
@@ -94,7 +94,7 @@ onMounted(() => {
       ref="floatingRef"
       role="listbox"
       aria-label="Select one option"
-      class="w-full py-2 rounded-md shadow-md border border-neutral-100 bg-white z-10"
+      class="z-10 w-full rounded-md border border-neutral-100 bg-white py-2 shadow-md"
       :style="dropdownStyle"
     >
       <SfListItem

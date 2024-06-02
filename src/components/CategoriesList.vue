@@ -14,17 +14,17 @@ const { categories } = storeToRefs(useMain());
         <SfListItem
           size="sm"
           tag="div"
-          class="first-of-type:mt-2 rounded-md active:bg-primary-100"
+          class="rounded-md first-of-type:mt-2 active:bg-primary-100"
         >
-          <span class="flex items-center my-1">
+          <span class="my-1 flex items-center">
             <img
               :src="category.imageUrl"
               alt="category image"
-              class="w-10 h-10 mr-3"
+              class="mr-3 h-10 w-10"
             />
             {{ category.name }}
 
-            <SfCounter class="ml-2 typography-text-sm font-normal">
+            <SfCounter class="ml-2 font-normal typography-text-sm">
               {{ category.productCount }}
             </SfCounter>
           </span>

@@ -35,9 +35,9 @@ const currentCategoryID = computed(() => {
       leave-to-class="transform scale-95 opacity-0"
     >
       <MenuItems
-        class="z-10 absolute left-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none"
+        class="absolute left-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none"
       >
-        <div class="p-2 space-y-1">
+        <div class="space-y-1 p-2">
           <MenuItem
             v-slot="{ active }"
             v-for="{ name, imageUrl, link, productCount, id } in categories"
@@ -51,16 +51,16 @@ const currentCategoryID = computed(() => {
                   'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                 ]"
               >
-                <span class="flex items-center my-1">
+                <span class="my-1 flex items-center">
                   <img
                     :src="imageUrl"
                     alt="category image"
-                    class="w-8 h-8 mr-3"
+                    class="mr-3 h-8 w-8"
                   />
                   {{ name }}
 
                   <SfCounter
-                    class="ml-2 typography-text-sm font-normal"
+                    class="ml-2 font-normal typography-text-sm"
                     :class="{
                       'text-white': active || currentCategoryID === id,
                     }"

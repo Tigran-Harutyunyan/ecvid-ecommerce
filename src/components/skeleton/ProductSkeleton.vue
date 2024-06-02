@@ -3,23 +3,23 @@ import Card from "@/components/Card.vue";
 import SkeletonImageIcon from "@/components/ui/icons/SkeletonImageIcon.vue";
 </script>
 <template>
-  <Card class="max-w-[1100px] mb-10">
+  <Card class="mb-10 max-w-[1100px]">
     <div
-      class="animate-pulse grid grid-cols-1 md:grid-cols-2 gap-6 p-6 mt-10 mb-10 space-y-2"
+      class="mb-10 mt-10 grid animate-pulse grid-cols-1 gap-6 space-y-2 p-6 md:grid-cols-2"
     >
-      <div class="max-h-[600px] aspect-[4/3] bg-gray-200 rounded-md">
+      <div class="aspect-[4/3] max-h-[600px] rounded-md bg-gray-200">
         <SkeletonImageIcon />
       </div>
 
       <div class="space-y-5">
-        <div class="h-8 bg-gray-200 rounded-md"></div>
-        <div class="h-8 w-40 bg-gray-200 rounded-md"></div>
+        <div class="h-8 rounded-md bg-gray-200"></div>
+        <div class="h-8 w-40 rounded-md bg-gray-200"></div>
 
-        <div class="h-[180px] w-full bg-gray-200 rounded-md"></div>
+        <div class="h-[180px] w-full rounded-md bg-gray-200"></div>
 
-        <div class="flex gap-4 h-12">
-          <div class="w-40 bg-gray-200 rounded-md"></div>
-          <div class="w-full bg-gray-200 rounded-md"></div>
+        <div class="flex h-12 gap-4">
+          <div class="w-40 rounded-md bg-gray-200"></div>
+          <div class="w-full rounded-md bg-gray-200"></div>
         </div>
       </div>
     </div>

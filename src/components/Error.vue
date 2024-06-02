@@ -7,7 +7,7 @@ const { error } = defineProps<{
 </script>
 
 <template>
-  <div class="flex items-center my-10">
+  <div class="my-10 flex items-center">
     <ErrorIcon />
     <p class="ml-2 text-red-500">{{ error }}</p>
   </div>

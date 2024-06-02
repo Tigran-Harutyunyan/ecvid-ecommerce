@@ -47,7 +47,7 @@ const setPage = (pageNumber: number) => {
 <template>
   <nav
     v-show="totalItems > maxPages"
-    class="flex justify-between items-end border-t border-neutral-200"
+    class="flex items-end justify-between border-t border-neutral-200"
     role="navigation"
     aria-label="pagination"
   >
@@ -65,20 +65,20 @@ const setPage = (pageNumber: number) => {
       <span class="hidden sm:inline-flex"> Previous </span>
     </SfButton>
     <div class="flex items-center">
-      <ul class="flex justify-center mr-2">
+      <ul class="mr-2 flex justify-center">
         <li v-if="!pages.includes(1)">
           <div
             :class="[
-              'flex pt-1 border-t-4 border-transparent',
+              'flex border-t-4 border-transparent pt-1',
               {
-                'font-medium border-t-4 !border-primary-500':
+                'border-t-4 !border-primary-500 font-medium':
                   selectedPage === 1,
               },
             ]"
           >
             <button
               type="button"
-              class="min-w-[38px] px-3 sm:px-4 py-3 md:w-12 rounded-md text-neutral-500 hover:bg-primary-100 hover:text-primary-800 active:bg-primary-200 active:text-primary-900"
+              class="min-w-[38px] rounded-md px-3 py-3 text-neutral-500 hover:bg-primary-100 hover:text-primary-800 active:bg-primary-200 active:text-primary-900 sm:px-4 md:w-12"
               :aria-current="selectedPage === 1"
               @click="setPage(1)"
             >
@@ -87,22 +87,22 @@ const setPage = (pageNumber: number) => {
           </div>
         </li>
         <li v-if="startPage > 2">
-          <div class="flex pt-1 border-t-4 border-transparent">
+          <div class="flex border-t-4 border-transparent pt-1">
             <button
               type="button"
               disabled
               aria-hidden="true"
-              class="px-4 py-3 md:w-12 rounded-md text-neutral-500"
+              class="rounded-md px-4 py-3 text-neutral-500 md:w-12"
             >
               ...
             </button>
           </div>
         </li>
         <li v-if="maxVisiblePages === 1 && selectedPage === totalPages">
-          <div class="flex pt-1 border-t-4 border-transparent">
+          <div class="flex border-t-4 border-transparent pt-1">
             <button
               type="button"
-              class="min-w-[38px] px-3 sm:px-4 py-3 md:w-12 rounded-md text-neutral-500 hover:bg-primary-100 hover:text-primary-800 active:bg-primary-200 active:text-primary-900"
+              class="min-w-[38px] rounded-md px-3 py-3 text-neutral-500 hover:bg-primary-100 hover:text-primary-800 active:bg-primary-200 active:text-primary-900 sm:px-4 md:w-12"
               :aria-current="endPage - 1 === selectedPage"
               @click="setPage(endPage - 1)"
             >
@@ -113,9 +113,9 @@ const setPage = (pageNumber: number) => {
         <li v-for="page in pages" :key="`page-${page}`">
           <div
             :class="[
-              'flex pt-1 border-t-4 border-transparent',
+              'flex border-t-4 border-transparent pt-1',
               {
-                'font-medium border-t-4 !border-primary-700':
+                'border-t-4 !border-primary-700 font-medium':
                   selectedPage === page,
               },
             ]"
@@ -123,7 +123,7 @@ const setPage = (pageNumber: number) => {
             <button
               type="button"
               :class="[
-                'min-w-[38px] px-3 sm:px-4 py-3 md:w-12 text-neutral-500 rounded-md hover:bg-primary-100 hover:text-primary-800 active:bg-primary-200 active:text-primary-900',
+                'min-w-[38px] rounded-md px-3 py-3 text-neutral-500 hover:bg-primary-100 hover:text-primary-800 active:bg-primary-200 active:text-primary-900 sm:px-4 md:w-12',
                 {
                   '!text-neutral-900 hover:!text-primary-800 active:!text-primary-900':
                     selectedPage === page,
@@ -138,10 +138,10 @@ const setPage = (pageNumber: number) => {
           </div>
         </li>
         <li v-if="maxVisiblePages === 1 && selectedPage === 1">
-          <div class="flex pt-1 border-t-4 border-transparent">
+          <div class="flex border-t-4 border-transparent pt-1">
             <button
               type="button"
-              class="min-w-[38px] px-3 sm:px-4 py-3 md:w-12 rounded-md text-neutral-500 hover:bg-primary-100 hover:text-primary-800 active:bg-primary-200 active:text-primary-900"
+              class="min-w-[38px] rounded-md px-3 py-3 text-neutral-500 hover:bg-primary-100 hover:text-primary-800 active:bg-primary-200 active:text-primary-900 sm:px-4 md:w-12"
               :aria-label="`Page 2 of ${totalPages}`"
               @click="setPage(2)"
             >
@@ -150,12 +150,12 @@ const setPage = (pageNumber: number) => {
           </div>
         </li>
         <li v-if="endPage < totalPages - 1">
-          <div class="flex pt-1 border-t-4 border-transparent">
+          <div class="flex border-t-4 border-transparent pt-1">
             <button
               type="button"
               disabled
               aria-hidden="true"
-              class="px-4 py-3 md:w-12 rounded-md text-neutral-500"
+              class="rounded-md px-4 py-3 text-neutral-500 md:w-12"
             >
               ...
             </button>
@@ -164,16 +164,16 @@ const setPage = (pageNumber: number) => {
         <li v-if="!pages.includes(totalPages)">
           <div
             :class="[
-              'flex pt-1 border-t-4 border-transparent',
+              'flex border-t-4 border-transparent pt-1',
               {
-                'font-medium border-t-4 !border-primary-500':
+                'border-t-4 !border-primary-500 font-medium':
                   selectedPage === totalPages,
               },
             ]"
           >
             <button
               type="button"
-              class="min-w-[38px] px-3 sm:px-4 py-3 md:w-12 rounded-md text-neutral-500 hover:bg-primary-100 hover:text-primary-800 active:bg-primary-200 active:text-primary-900"
+              class="min-w-[38px] rounded-md px-3 py-3 text-neutral-500 hover:bg-primary-100 hover:text-primary-800 active:bg-primary-200 active:text-primary-900 sm:px-4 md:w-12"
               :aria-current="totalPages === selectedPage"
               @click="setPage(totalPages)"
             >

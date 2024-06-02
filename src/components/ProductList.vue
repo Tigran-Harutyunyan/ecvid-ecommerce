@@ -112,7 +112,7 @@ watch(
   },
   {
     immediate: true,
-  }
+  },
 );
 </script>
 
@@ -127,7 +127,7 @@ watch(
         </div>
         <div
           v-if="products.length"
-          class="grid gap-8 grid-cols-1 min-[480px]:grid-cols-2 2xs:grid-cols-2 md:gap-6 md:grid-cols-2 min-[1100px]:grid-cols-3 mb-10 md:mb-5"
+          class="2xs:grid-cols-2 mb-10 grid grid-cols-1 gap-8 min-[480px]:grid-cols-2 md:mb-5 md:grid-cols-2 md:gap-6 min-[1100px]:grid-cols-3"
         >
           <ProductCard v-for="product in products" :product="product" />
         </div>
@@ -139,7 +139,7 @@ watch(
           :pageSize="pagination.limit"
           :maxPages="pagination.count"
           @change="onPaginationChange"
-          class="mt-8 mb-3"
+          class="mb-3 mt-8"
         />
       </div>
     </Transition>

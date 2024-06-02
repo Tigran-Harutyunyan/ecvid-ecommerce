@@ -17,14 +17,14 @@ const count = computed(() => {
 </script>
 <template>
   <div
-    class="grid gap-8 grid-cols-1 min-[480px]:grid-cols-2 2xs:grid-cols-2 md:gap-6 md:grid-cols-2 min-[1100px]:grid-cols-3 mb-10 md:mb-5"
+    class="2xs:grid-cols-2 mb-10 grid grid-cols-1 gap-8 min-[480px]:grid-cols-2 md:mb-5 md:grid-cols-2 md:gap-6 min-[1100px]:grid-cols-3"
   >
     <Card class="relative animate-pulse" v-for="n in count" :key="n">
       <div class="block h-80 w-full bg-gray-200"></div>
 
-      <div class="space-y-5 mt-2 p-5">
-        <div class="h-20 bg-gray-200 rounded-md"></div>
-        <div class="h-10 bg-gray-200 rounded-md"></div>
+      <div class="mt-2 space-y-5 p-5">
+        <div class="h-20 rounded-md bg-gray-200"></div>
+        <div class="h-10 rounded-md bg-gray-200"></div>
       </div>
     </Card>
   </div>
